@@ -3,10 +3,11 @@
 :root {
   --background: #f5f7fb;
   --foreground: #e0e2f3;
+  --dark-foreground: #c4c5ef;
   --white: #ffffff;
   --black: #020303;
   --yellow: #febf00;
-  --blue: #155dfc;
+  --blue: #3b6bd4;
   --grey: #bbbbbb;
 }
 
@@ -20,6 +21,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-dark-foreground: var( --dark-foreground);
   --color-white: var(--white);
   --color-black: var(--black);
   --color-yellow: var(--yellow);
