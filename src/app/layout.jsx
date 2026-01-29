@@ -1,14 +1,15 @@
-import { Geist, Geist_Mono, Poppins } from "next/font/google";
+import { Space_Grotesk, Poppins, Nunito } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
+  variable: "--font-space",
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const nunito = Nunito({
   subsets: ["latin"],
+  weight: ["400", "600", "700"],
 });
 
 const poppins = Poppins({
@@ -26,7 +27,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
+        className={`${poppins.variable} ${spaceGrotesk.variable} ${nunito.variable} antialiased`}
       >
         {children}
 

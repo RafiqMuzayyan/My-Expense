@@ -3,11 +3,12 @@
 :root {
   --background: #f5f7fb;
   --foreground: #e0e2f3;
-  --dark-foreground: #c4c5ef;
+  --dark-foreground: #c3c3eb;
   --white: #ffffff;
   --black: #020303;
   --yellow: #febf00;
   --blue: #3b6bd4;
+  --dark-blue: #162456;
   --grey: #bbbbbb;
 }
 
@@ -27,13 +28,14 @@
   --color-yellow: var(--yellow);
   --color-grey: var(--grey);
   --color-secondary: var(--blue);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-dark-secondary: var(--dark-blue);
+  --font-nunito: var(--font-nunito);
   --font-poppins: var(--font-poppins);
+  --font-space: var(--font-space);
 }
 
 body {
   background: var(--background);
   color: var(--black);
-  font-family: var(--font-poppins);
+  font-family: var(--font-nunito);
 }
