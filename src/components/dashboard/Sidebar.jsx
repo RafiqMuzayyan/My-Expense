@@ -5,7 +5,7 @@ import NavigationItem from './NavigationItem';
 
 const Sidebar = () => {
   return (
-    <aside className="bg-foreground flex flex-col justify-between w-45 h-full rounded-xl px-5 pt-10 pb-6 shadow">
+    <aside className="bg-foreground flex flex-col justify-between min-w-40 h-full rounded-xl px-5 pt-10 pb-6 shadow">
 
         <div className='relative' >
             <h1 className="font-bold font-space text-xl">My Expense</h1>
