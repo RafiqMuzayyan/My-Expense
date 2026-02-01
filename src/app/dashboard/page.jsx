@@ -1,5 +1,6 @@
+import DataCard from '@/components/dashboard/DataCard'
 import DonutChart from '@/components/dashboard/DonutChart'
-import { Search } from 'lucide-react'
+import { BanknoteArrowDown, Search, TrendingDown, TrendingUp, WalletCards, WalletMinimal } from 'lucide-react'
 import React from 'react'
 
 const page = () => {
@@ -26,7 +27,7 @@ const page = () => {
 
         <div className='w-full max-w-60'>
 
-          <div className='mb-4'>
+          <div className='mb-8'>
             <h1 className='font-semibold text-4xl'>
               Hello John,
             </h1>
@@ -36,28 +37,54 @@ const page = () => {
           </div>
 
           {/* pie chart */}
-          <div className="flex flex-col items-center ">
+          <div className="flex flex-col items-center gap-5">
             {/* Requested */}
-            <div className="w-full flex flex-col text-sm items-start">
-              <p className="text-gray-500">Expense</p>
-              <div className="flex items-center gap-2 font-semibold">
-                <span className="w-3 h-2 rounded-full bg-secondary" />
-                <h4>Rp {data[0].value}</h4>
-              </div>
-            </div>
+            
             <DonutChart data={data}/>
-            <div className="w-full flex flex-col text-sm items-end ">
-              <p className="text-gray-500">Income</p>
-              <div className="flex items-center gap-2 font-semibold">
-                <span className="w-3 h-2 rounded-full bg-yellow" />
-                <h4>Rp {data[1].value}</h4>
-              </div>
+            
+            <div className='w-full flex justify-center items-center gap-2'>
+                <div className='flex gap-1 items-center'>
+                  <span className="w-3 h-3 rounded-full bg-secondary"/>
+                  <h4 className='text-sm font-semibold text-black/70'>Balance</h4>
+                </div>
+                <div className='flex gap-1 items-center'>
+                  <span className="w-3 h-3 rounded-full bg-green-500"/>
+                  <h4 className='text-sm font-semibold text-black/70'>Income</h4>
+                </div>
+                <div className='flex gap-1 items-center justify-between'>
+                  <span className="w-3 h-3 rounded-full bg-red-500"/>
+                  <h4 className='text-sm font-semibold text-black/70'>Expense</h4>
+                </div>
             </div>
+
           </div>
 
         </div>
 
-        <div className='w-full'>
+        <div className='w-full '>
+          
+            <div className='w-full grid grid-cols-3 gap-4 mb-4'>
+              
+              <DataCard
+                Icon={WalletCards}
+                Title='Balance'
+                Amount={40000}
+              />
+              <DataCard
+                Icon={WalletMinimal}
+                IconColor='bg-green-500'
+                Title='Income'
+                Amount={82.24}
+              />
+              <DataCard
+                Icon={BanknoteArrowDown}
+                IconColor='bg-red-500'
+                Title='Expense'
+                Amount={200.86}
+              />
+              
+            </div>
+
             <div>
               <div className='flex justify-between pl-12 items-end mb-4' >
                 <h3 className='text-sm text-black/40'>Your Expense</h3>
@@ -87,13 +114,20 @@ const page = () => {
                   <tbody className='text-black/50'>
                     <tr>
                       <td>Makan Siang</td>
-                      <td>Rp25.000</td>
+                      <td>
+                        <div className='flex items-center w-fit bg-succes/10 p-1 text-succes font-semibold rounded gap-1'>
+                          + Rp25.000 <TrendingUp size={16}/></div>
+                      </td>
                       <td>Food</td>
                       <td>29 Jan 2026</td>
                     </tr>
                     <tr>
                       <td>Transport Ojek</td>
-                      <td>Rp15.000</td>
+                      <td>
+                        <div className='flex items-center w-fit bg-danger/10 p-1 text-danger font-semibold rounded gap-1'>
+                          - Rp25.000 <TrendingDown size={16}/>
+                        </div>
+                      </td>
                       <td>Transport</td>
                       <td>29 Jan 2026</td>
                     </tr>
