@@ -6,8 +6,9 @@ import React from 'react'
 
 const page = () => {
   const data = [
-  { name: "Requested", value: 200.86 },
-  { name: "Unrequested", value: 82.34 },
+  { name: "Income", value: 200000 },
+  { name: "Expense", value: 80000 },
+  { name: "Balance", value:  120000},
 ]
 
   return (

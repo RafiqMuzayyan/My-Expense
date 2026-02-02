@@ -1,9 +1,10 @@
 "use client"
 
+import toRupiah from "@/app/utilities/toRupiah"
 import { PieChart, Pie , Label, Cell } from "recharts"
 
 
-const COLORS = ["#3b6bd4", "#febf00"]
+const COLORS = ["#00c951", "#fb2c36", "#3b6bd4"]
 
 export default function DonutChart({ data }) {
   return (
@@ -36,7 +37,6 @@ export default function DonutChart({ data }) {
         <Label
         position="center"
         content={() => {
-            const total = data.reduce((a, b) => a + b.value, 0)
 
             return (
             <text x="50%" y="50%" textAnchor="middle">
@@ -52,7 +52,7 @@ export default function DonutChart({ data }) {
                 dy="18"
                 className="fill-black  font-semibold"
                 >
-                Rp{total.toFixed(2)}
+                {toRupiah(data[2].value)}
                 </tspan>
             </text>
             )
