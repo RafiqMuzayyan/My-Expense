@@ -63,5 +63,14 @@ td{
   border-bottom: 1px solid var(--grey);
 
 }
+.no-scrollbar {
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE & Edge lama */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;              /* Chrome, Safari */
+}
+
 
 

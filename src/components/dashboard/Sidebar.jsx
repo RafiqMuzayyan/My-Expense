@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import { BanknoteArrowDown, ChevronLeft, ChevronRight, House, Power, Settings, WalletMinimal } from "lucide-react";
+import { ChevronLeft, ChevronRight, FileText, House, Power, Settings, WalletMinimal } from "lucide-react";
 import NavigationItem from './NavigationItem';
 
 const Sidebar = () => {
@@ -38,14 +38,14 @@ const Sidebar = () => {
                         Icon={House}
                     />  
                     <NavigationItem
-                        url="/dashboard/income"
-                        name="Income"
+                        url="/dashboard/transaction"
+                        name="Transaction"
                         Icon={WalletMinimal}
                     />  
                     <NavigationItem
-                        url="/dashboard/expense"
-                        name="Expense"
-                        Icon={BanknoteArrowDown}
+                        url="/dashboard/report"
+                        name="Report"
+                        Icon={FileText}
                     />  
                     <NavigationItem
                         url="/dashboard/settings"

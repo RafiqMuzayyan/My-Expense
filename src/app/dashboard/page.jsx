@@ -89,7 +89,7 @@ const page = () => {
 
             <div>
               <div className='flex justify-between pl-12 items-end mb-4' >
-                <h3 className='text-sm text-black/40'>Your Expense</h3>
+                <h3 className='text-sm text-black/40'>Your Transaction</h3>
                 <select 
                   name="sort-by" 
                   id="sort-by"
@@ -107,7 +107,7 @@ const page = () => {
                 <table className='w-full text-sm '>
                   <thead className='text-black/50'>
                     <tr>
-                      <th>Expense</th>
+                      <th>Transaction</th>
                       <th>Amount</th>
                       <th>Category</th>
                       <th>Date</th>
