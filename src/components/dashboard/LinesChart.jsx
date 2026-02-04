@@ -1,4 +1,5 @@
 "use client"
+import toRupiah from '@/app/utilities/toRupiah'
 import {
   LineChart,
   Line,
@@ -7,18 +8,7 @@ import {
   Tooltip,
   ResponsiveContainer,
   CartesianGrid,
-  Area,
 } from 'recharts'
-
-const formatCurrency = (value) =>
-  new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(value)
-
-
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload || !payload.length) return null
@@ -28,32 +18,32 @@ const CustomTooltip = ({ active, payload, label }) => {
   const net = income - expense
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow-xl p-4">
-      <p className="font-semibold text-gray-900 mb-3 text-sm tracking-wide uppercase opacity-70">{label}</p>
+    <div className="bg-white border border-grey rounded-lg shadow-xl p-4">
+      <p className="font-semibold text-black/70 mb-3 text-sm tracking-wide uppercase opacity-70">{label}</p>
       <div className="space-y-2.5">
-        <div className="flex items-center justify-between gap-6">
+        <div className="flex items-center justify-between gap-4">
           <span className="flex items-center gap-2.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <span className="text-gray-700 text-sm font-medium">Income</span>
+            <span className="w-2 h-2 rounded-full bg-succes" />
+            <span className="text-black/70 text-sm font-medium">Income</span>
           </span>
-          <span className="font-bold text-emerald-600 text-sm tabular-nums">
-            {formatCurrency(income)}
+          <span className="font-bold text-succes text-sm tabular-nums">
+            {toRupiah(income)}
           </span>
         </div>
-        <div className="flex items-center justify-between gap-6">
+        <div className="flex items-center justify-between gap-4">
           <span className="flex items-center gap-2.5">
-            <span className="w-2 h-2 rounded-full bg-rose-500" />
-            <span className="text-gray-700 text-sm font-medium">Expense</span>
+            <span className="w-2 h-2 rounded-full bg-danger" />
+            <span className="text-black/70 text-sm font-medium">Expense</span>
           </span>
-          <span className="font-bold text-rose-600 text-sm tabular-nums">
-            {formatCurrency(expense)}
+          <span className="font-bold text-danger text-sm tabular-nums">
+            {toRupiah(expense)}
           </span>
         </div>
         <div className="border-t border-gray-200 pt-2.5 mt-2.5">
           <div className="flex items-center justify-between gap-6">
-            <span className="text-gray-700 text-sm font-medium">Net Flow</span>
-            <span className={`font-bold text-sm tabular-nums ${net >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
-              {formatCurrency(net)}
+            <span className="text-black/70 text-sm font-medium">Net Flow</span>
+            <span className={`font-bold text-sm tabular-nums ${net >= 0 ? 'text-succes' : 'text-danger'}`}>
+              {toRupiah(net)}
             </span>
           </div>
         </div>
@@ -62,15 +52,12 @@ const CustomTooltip = ({ active, payload, label }) => {
   )
 }
 
-
-
-export default function IncomeExpenseLineChart({ 
-  data, 
-  showStats = true, 
+const LineCharts = ({ 
+  data,  
   height = 300,
-  title = "Financial Performance",
+  title = "Monthly Finance Overview",
   subtitle = "Income & Expense Analysis"
-}) {
+}) =>  {
   const defaultData = [
     { name: 'Week 1', income: 4500000, expense: 2200000 },
     { name: 'Week 2', income: 3800000, expense: 1800000 },
@@ -82,7 +69,7 @@ export default function IncomeExpenseLineChart({
 
 
   return (
-    <div className="bg-white rounded-2xl p-8 w-full shadow-lg border border-gray-200 relative overflow-hidden">
+    <div className="bg-white rounded-2xl p-4 w-full shadow    relative overflow-hidden">
      
       
       <div className="relative z-10">
@@ -109,22 +96,12 @@ export default function IncomeExpenseLineChart({
         </div>
 
         {/* Chart */}
-        <div className="bg-gray-50/50 border border-gray-200 rounded-xl p-6">
+        <div className="bg-background border border-grey rounded-xl p-6">
           <ResponsiveContainer width="100%" height={height}>
             <LineChart 
               data={chartData} 
               margin={{ top: 10, right: 10, left: 0, bottom: 10 }}
             >
-              <defs>
-                <linearGradient id="incomeGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.2}/>
-                  <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
-                </linearGradient>
-                <linearGradient id="expenseGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#ef4444" stopOpacity={0.2}/>
-                  <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
-                </linearGradient>
-              </defs>
               <CartesianGrid 
                 strokeDasharray="3 3" 
                 stroke="rgba(0, 0, 0, 0.4)" 
@@ -145,25 +122,14 @@ export default function IncomeExpenseLineChart({
                 dx={-8}
               />
               <Tooltip content={<CustomTooltip />} cursor={{ stroke: 'rgba(0, 0, 0, 0.1)', strokeWidth: 2 }} />
-              <Area
-                type="monotone"
-                dataKey="income"
-                stroke="none"
-                fill="url(#incomeGradient)"
-              />
-              <Area
-                type="monotone"
-                dataKey="expense"
-                stroke="none"
-                fill="url(#expenseGradient)"
-              />
+              
               <Line
                 type="monotone"
                 dataKey="income"
-                stroke="#10b981"
+                stroke="#00c951"
                 strokeWidth={3}
                 dot={{ 
-                  fill: '#10b981', 
+                  fill: '#00c951', 
                   strokeWidth: 0, 
                   r: 5,
                   className: 'drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]'
@@ -177,10 +143,10 @@ export default function IncomeExpenseLineChart({
               <Line
                 type="monotone"
                 dataKey="expense"
-                stroke="#ef4444"
+                stroke="#fb2c36"
                 strokeWidth={3}
                 dot={{ 
-                  fill: '#ef4444', 
+                  fill: '#fb2c36', 
                   strokeWidth: 0, 
                   r: 5,
                   className: 'drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]'
@@ -204,3 +170,5 @@ export default function IncomeExpenseLineChart({
     </div>
   )
 }
+
+export default LineCharts 

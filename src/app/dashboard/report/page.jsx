@@ -1,5 +1,5 @@
 import DataCard from '@/components/dashboard/DataCard'
-import IncomeExpenseLineChart from '@/components/dashboard/LinesChart'
+import LineCharts from '@/components/dashboard/LinesChart'
 import { BanknoteArrowDown, WalletCards, WalletMinimal } from 'lucide-react'
 import React from 'react'
 
@@ -44,7 +44,7 @@ const page = () => {
           />
           
         </div>
-        <IncomeExpenseLineChart/>
+        <LineCharts/>
     </div>
   )
 }
