@@ -1,7 +1,7 @@
 import AmountColumn from '@/components/dashboard/AmountColumn'
 import BarrChart from '@/components/dashboard/BarChart'
 import ModalForm from '@/components/dashboard/ModalForm'
-import { PlusCircle } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Plus, PlusCircle, Search, SquarePen, Trash2 } from 'lucide-react'
 import React from 'react'
 
 const page = () => {
@@ -45,17 +45,24 @@ const page = () => {
     <div className='h-full overflow-y-auto no-scrollbar pt-8'>
       <ModalForm/>
       <div className='mb-4'>
+
+        {/* header */}
+        <div className='flex justify-between items-center mb-4'>
+          <h1 className=' font-semibold text-2xl text-black/50'>Your Transaction</h1>
+          <button className='flex items-center px-3 py-1 bg-white shadow rounded-xl gap-3 text-sm  ml-8 cursor-pointer'>
+            <Plus size={18}/> 
+            <span>Add Transaction</span>
+          </button>
+        </div>
+
+        {/* data filter */}
         <div className='flex justify-between items-end mb-4' >
-          <h1 className='pl-7 font-semibold text-black/50'>Your Transaction</h1>
           <div className='flex gap-3  text-black/70'>
-            <button className='flex items-center px-4 py-1.5 bg-white shadow rounded-xl gap-3 text-sm font-semibold ml-8 cursor-pointer'>
-              <PlusCircle/> 
-              <span>Add transaction</span>
-            </button>
+            
             <select 
               name="sort-by" 
               id="sort-by"
-              className='py-1.5 px-3 bg-white rounded-xl text-sm font-semibold shadow'
+              className='py-1.5 px-3 bg-white rounded-2xl text-sm font-semibold shadow'
               defaultValue={"none"}
 
             >
@@ -67,7 +74,7 @@ const page = () => {
             <select 
               name="sort-by" 
               id="sort-by"
-              className='py-1.5 px-3 bg-white rounded-xl text-sm font-semibold shadow'
+              className='py-1.5 px-3 bg-white rounded-2xl text-sm font-semibold shadow'
               defaultValue={"none"}
 
             >
@@ -77,15 +84,24 @@ const page = () => {
               <option value="">opsi 4</option>
             </select>
           </div>
+          <div className='flex gap-1 items-center bg-white rounded-2xl px-4 py-1.5 focus-within:ring-2 focus-within:ring-secondary shadow'>
+            <input type="text" placeholder='Search' className='text-sm outline-0'/>
+            <button className='cursor-pointer text-secondary'>
+              <Search size={20}/>
+            </button>
+          </div>
         </div>
-        <div className='bg-white rounded-xl p-2 shadow max-h-100 overflow-y-auto no-scrollbar'>
-          <table className='w-full text-sm '>
+
+        {/* table */}
+        <div className='bg-white rounded-xl p-2 shadow '>
+          <table className='w-full text-sm'>
             <thead className='text-black/50'>
               <tr>
                 <th>Transaction</th>
                 <th>Amount</th>
                 <th>Category</th>
                 <th>Date</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody className='text-black/50'>
@@ -96,73 +112,150 @@ const page = () => {
                 </td>
                 <td>Food</td>
                 <td>29 Jan 2026</td>
-              </tr>
-
-              <tr>
-                <td>Transport Ojek</td>
                 <td>
-                  <AmountColumn amount={13500} />
+                  <div className='flex items-center gap-1'>
+                    <Trash2 className='p-1 bg-danger rounded text-white cursor-pointer'/>
+                    <SquarePen className='p-1 bg-yellow rounded text-white cursor-pointer'/>
+                  </div>
                 </td>
-                <td>Transport</td>
+              </tr>
+              <tr>
+                <td>Makan Siang</td>
+                <td>
+                  <AmountColumn amount={25000} />
+                </td>
+                <td>Food</td>
                 <td>29 Jan 2026</td>
-              </tr>
-
-              <tr>
-                <td>Gaji Bulanan</td>
                 <td>
-                  <AmountColumn income amount={4500000} />
+                  <div className='flex items-center gap-1'>
+                    <Trash2 className='p-1 bg-danger rounded text-white cursor-pointer'/>
+                    <SquarePen className='p-1 bg-yellow rounded text-white cursor-pointer'/>
+                  </div>
                 </td>
-                <td>Salary</td>
-                <td>28 Jan 2026</td>
               </tr>
-
               <tr>
-                <td>Kopi</td>
+                <td>Makan Siang</td>
                 <td>
-                  <AmountColumn amount={18000} />
+                  <AmountColumn amount={25000} />
                 </td>
-                <td>Drink</td>
-                <td>28 Jan 2026</td>
+                <td>Food</td>
+                <td>29 Jan 2026</td>
+                <td>
+                  <div className='flex items-center gap-1'>
+                    <Trash2 className='p-1 bg-danger rounded text-white cursor-pointer'/>
+                    <SquarePen className='p-1 bg-yellow rounded text-white cursor-pointer'/>
+                  </div>
+                </td>
               </tr>
-
               <tr>
-                <td>Internet Bulanan</td>
+                <td>Makan Siang</td>
                 <td>
-                  <AmountColumn amount={150000} />
+                  <AmountColumn amount={25000} />
                 </td>
-                <td>Utilities</td>
-                <td>27 Jan 2026</td>
+                <td>Food</td>
+                <td>29 Jan 2026</td>
+                <td>
+                  <div className='flex items-center gap-1'>
+                    <Trash2 className='p-1 bg-danger rounded text-white cursor-pointer'/>
+                    <SquarePen className='p-1 bg-yellow rounded text-white cursor-pointer'/>
+                  </div>
+                </td>
               </tr>
-
               <tr>
-                <td>Freelance Project</td>
+                <td>Makan Siang</td>
                 <td>
-                  <AmountColumn income amount={1200000} />
+                  <AmountColumn amount={25000} />
                 </td>
-                <td>Freelance</td>
-                <td>27 Jan 2026</td>
+                <td>Food</td>
+                <td>29 Jan 2026</td>
+                <td>
+                  <div className='flex items-center gap-1'>
+                    <Trash2 className='p-1 bg-danger rounded text-white cursor-pointer'/>
+                    <SquarePen className='p-1 bg-yellow rounded text-white cursor-pointer'/>
+                  </div>
+                </td>
               </tr>
-
               <tr>
-                <td>Jajan</td>
+                <td>Makan Siang</td>
                 <td>
-                  <AmountColumn amount={12000} />
+                  <AmountColumn amount={25000} />
                 </td>
-                <td>Snack</td>
-                <td>27 Jan 2026</td>
+                <td>Food</td>
+                <td>29 Jan 2026</td>
+                <td>
+                  <div className='flex items-center gap-1'>
+                    <Trash2 className='p-1 bg-danger rounded text-white cursor-pointer'/>
+                    <SquarePen className='p-1 bg-yellow rounded text-white cursor-pointer'/>
+                  </div>
+                </td>
               </tr>
-
               <tr>
-                <td>Langganan Spotify</td>
+                <td>Makan Siang</td>
                 <td>
-                  <AmountColumn amount={54990} />
+                  <AmountColumn amount={25000} />
                 </td>
-                <td>Subscription</td>
-                <td>26 Jan 2026</td>
+                <td>Food</td>
+                <td>29 Jan 2026</td>
+                <td>
+                  <div className='flex items-center gap-1'>
+                    <Trash2 className='p-1 bg-danger rounded text-white cursor-pointer'/>
+                    <SquarePen className='p-1 bg-yellow rounded text-white cursor-pointer'/>
+                  </div>
+                </td>
               </tr>
-
+              <tr>
+                <td>Makan Siang</td>
+                <td>
+                  <AmountColumn amount={25000} />
+                </td>
+                <td>Food</td>
+                <td>29 Jan 2026</td>
+                <td>
+                  <div className='flex items-center gap-1'>
+                    <Trash2 className='p-1 bg-danger rounded text-white cursor-pointer'/>
+                    <SquarePen className='p-1 bg-yellow rounded text-white cursor-pointer'/>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Makan Siang</td>
+                <td>
+                  <AmountColumn amount={25000} />
+                </td>
+                <td>Food</td>
+                <td>29 Jan 2026</td>
+                <td>
+                  <div className='flex items-center gap-1'>
+                    <Trash2 className='p-1 bg-danger rounded text-white cursor-pointer'/>
+                    <SquarePen className='p-1 bg-yellow rounded text-white cursor-pointer'/>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Makan Siang</td>
+                <td>
+                  <AmountColumn amount={25000} />
+                </td>
+                <td>Food</td>
+                <td>29 Jan 2026</td>
+                <td>
+                  <div className='flex items-center gap-1'>
+                    <Trash2 className='p-1 bg-danger rounded text-white cursor-pointer'/>
+                    <SquarePen className='p-1 bg-yellow rounded text-white cursor-pointer'/>
+                  </div>
+                </td>
+              </tr>
             </tbody>
           </table>
+          <div className='flex justify-center items-center gap-1 pt-2 text-black/70'>
+            <ChevronsLeft className='bg-foreground rounded hover:bg-dark-foreground hover:text-dark-secondary cursor-pointer transition-all'/>
+            <ChevronLeft className='bg-foreground rounded hover:bg-dark-foreground hover:text-dark-secondary cursor-pointer transition-all'/>
+            <div className='bg-foreground rounded hover:bg-dark-foreground hover:text-dark-secondary cursor-pointer transition-all w-6 text-center font-semibold'>
+              1
+            </div>
+            <ChevronRight className='bg-foreground rounded hover:bg-dark-foreground hover:text-dark-secondary cursor-pointer transition-all'/>
+            <ChevronsRight className='bg-foreground rounded hover:bg-dark-foreground hover:text-dark-secondary cursor-pointer transition-all'/>
+          </div>
         </div>
       </div>
       <BarrChart data={data}/>

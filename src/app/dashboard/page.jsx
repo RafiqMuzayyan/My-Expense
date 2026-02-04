@@ -103,9 +103,9 @@ const page = () => {
                   <option value="">opsi 4</option>
                 </select>
               </div>
-              <div className='bg-white rounded-xl p-2 shadow max-h-74 overflow-y-auto'>
+              <div className='bg-white rounded-xl p-2 shadow max-h-74 overflow-y-auto no-scrollbar'>
                 <table className='w-full text-sm '>
-                  <thead className='text-black/50'>
+                  <thead className='text-black/50 '>
                     <tr>
                       <th>Transaction</th>
                       <th>Amount</th>
@@ -115,12 +115,12 @@ const page = () => {
                   </thead>
                   <tbody className='text-black/50'>
                     <tr>
-  <td>Makan Siang</td>
-  <td>
-    <AmountColumn amount={25000} />
-  </td>
-  <td>Food</td>
-  <td>29 Jan 2026</td>
+                      <td>Makan Siang</td>
+                      <td>
+                        <AmountColumn amount={25000} />
+                      </td>
+                      <td>Food</td>
+                      <td>29 Jan 2026</td>
                     </tr>
 
                     <tr>
