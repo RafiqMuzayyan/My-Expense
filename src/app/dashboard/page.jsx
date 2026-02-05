@@ -1,15 +1,17 @@
 import AmountColumn from '@/components/dashboard/AmountColumn'
-import DataCard from '@/components/dashboard/DataCard'
-import DonutChart from '@/components/dashboard/DonutChart'
+import DataCard from '@/components/dashboard/Card/DataCard'
+import DonutChart from '@/components/dashboard/chart/DonutChart'
 import { BanknoteArrowDown, Search, TrendingDown, TrendingUp, WalletCards, WalletMinimal } from 'lucide-react'
 import React from 'react'
 
 const page = () => {
   const data = [
-  { name: "Income", value: 200000 },
-  { name: "Expense", value: 80000 },
-  { name: "Balance", value:  120000},
-]
+    { name: "Income", value: 200000, color: "#00c951" },  
+    { name: "Expense", value: 80000, color: "#fb2c36" }, 
+    { name: "Balance", value: 120000, color: "#3b6bd4" },
+  ]
+  const balance = data[2].value
+
 
   return (
     <div className='w-full'>
@@ -42,7 +44,7 @@ const page = () => {
           <div className="flex flex-col items-center gap-5">
             {/* Requested */}
             
-            <DonutChart data={data}/>
+            <DonutChart data={data} centerData={balance} centerTitle='Total Balance'/>
             
             <div className='w-full flex justify-center items-center gap-2'>
                 <div className='flex gap-1 items-center'>
@@ -74,13 +76,13 @@ const page = () => {
               />
               <DataCard
                 Icon={WalletMinimal}
-                IconColor='bg-green-500'
+                IconColor='bg-succes'
                 Title='Income'
                 Amount={82.24}
               />
               <DataCard
                 Icon={BanknoteArrowDown}
-                IconColor='bg-red-500'
+                IconColor='bg-danger'
                 Title='Expense'
                 Amount={200.86}
               />

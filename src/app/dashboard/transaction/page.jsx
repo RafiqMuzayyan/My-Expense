@@ -1,5 +1,5 @@
 import AmountColumn from '@/components/dashboard/AmountColumn'
-import BarrChart from '@/components/dashboard/BarChart'
+import BarrChart from '@/components/dashboard/chart/BarChart'
 import ModalForm from '@/components/dashboard/ModalForm'
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Plus, PlusCircle, Search, SquarePen, Trash2 } from 'lucide-react'
 import React from 'react'

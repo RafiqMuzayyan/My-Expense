@@ -54,7 +54,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 const LineCharts = ({ 
   data,  
-  height = 300,
+  height = 230,
   title = "Monthly Finance Overview",
   subtitle = "Income & Expense Analysis"
 }) =>  {
@@ -77,19 +77,19 @@ const LineCharts = ({
         <div className="mb-8">
           <div className="flex items-start justify-between">
             <div>
-              <h3 className="font-bold text-2xl text-gray-900 tracking-tight mb-1">
+              <h3 className="font-bold text-2xl text-black/70 tracking-tight mb-1">
                 {title}
               </h3>
-              <p className="text-sm text-gray-600 font-medium">{subtitle}</p>
+              <p className="text-sm text-black/90 ">{subtitle}</p>
             </div>
-            <div className="flex items-center gap-4 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg">
+            <div className="flex items-center gap-4 px-4 py-2 bg-background border border-black/50 rounded-lg">
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-emerald-500 shadow-sm" />
-                <span className="text-xs text-gray-700 font-semibold">Income</span>
+                <div className="w-3 h-3 rounded-full bg-succes shadow-sm" />
+                <span className="text-xs text-black/70 font-semibold">Income</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-rose-500 shadow-sm" />
-                <span className="text-xs text-gray-700 font-semibold">Expense</span>
+                <div className="w-3 h-3 rounded-full bg-danger shadow-sm" />
+                <span className="text-xs text-black/70 font-semibold">Expense</span>
               </div>
             </div>
           </div>
