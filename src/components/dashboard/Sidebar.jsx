@@ -13,7 +13,7 @@ const Sidebar = () => {
             >
                 <ChevronRight/>
             </button>
-            <aside className={`bg-foreground flex flex-col justify-between  h-full rounded-xl  pt-10 pb-6  ${(isOpen) ? "w-45 px-5" : "w-0  px-0"} transition-all overflow-hidden z-1`}>
+            <aside className={`bg-foreground flex flex-col justify-between  h-full rounded-xl  pt-10 pb-6  ${(isOpen) ? "w-55 px-5" : "w-0  px-0"} transition-all overflow-hidden z-1`}>
 
                 <div className='relative' >
                     <h1 className="font-bold font-space text-xl">My Expense</h1>

@@ -1,7 +1,7 @@
 import AmountColumn from '@/components/dashboard/AmountColumn'
 import BarrChart from '@/components/dashboard/chart/BarChart'
 import ModalForm from '@/components/dashboard/ModalForm'
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Plus, PlusCircle, Search, SquarePen, Trash2 } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Search, SquarePen, Trash2 } from 'lucide-react'
 import React from 'react'
 
 const page = () => {
@@ -41,16 +41,13 @@ const page = () => {
 
   return (
     <div className='h-full overflow-y-auto no-scrollbar pt-8'>
-      <ModalForm/>
+      
       <div className='mb-4'>
 
         {/* header */}
         <div className='flex justify-between items-center mb-4'>
           <h1 className=' font-semibold text-2xl text-black/50'>Your Transaction</h1>
-          <button className='flex items-center px-3 py-1 bg-white shadow rounded-xl gap-3 text-sm  ml-8 cursor-pointer'>
-            <Plus size={18}/> 
-            <span>Add Transaction</span>
-          </button>
+          <ModalForm/>
         </div>
 
         {/* data filter */}
@@ -76,7 +73,7 @@ const page = () => {
               defaultValue={"none"}
 
             >
-              <option value="">Recent</option>
+              <option value="">This Month</option>
               <option value="">opsi 2</option>
               <option value="">opsi 3</option>
               <option value="">opsi 4</option>

@@ -14,7 +14,7 @@ const page = () => {
 
 
   return (
-    <div className='w-full'>
+    <div className='w-full h-full'>
 
       {/* searchbar */}
       <div className=' flex w-full justify-end pt-10'>
@@ -27,16 +27,16 @@ const page = () => {
       </div>
 
       {/* content */}
-      <div className='flex gap-10 pt-10'>
+      <div className='flex gap-10 pt-10 h-[82vh]'>
 
-        <div className='w-full max-w-60'>
+        <div className='w-full   max-w-60'>
 
           <div className='mb-8'>
             <h1 className='font-semibold text-4xl'>
               Hello John,
             </h1>
             <span className='text-black/40 text-sm '>
-              Take a look at your current balance 😜
+              You spent Rp 200.860 this month
             </span>
           </div>
 
@@ -65,47 +65,45 @@ const page = () => {
 
         </div>
 
-        <div className='w-full '>
+        <div className='w-full h-full overflow-y-auto no-scrollbar pb-2'>
           
             <div className='w-full grid grid-cols-3 gap-4 mb-4'>
               
               <DataCard
                 Icon={WalletCards}
-                Title='Balance'
+                Title='This Month Balance'
                 Amount={40000}
               />
               <DataCard
                 Icon={WalletMinimal}
                 IconColor='bg-succes'
-                Title='Income'
-                Amount={82.24}
+                Title='This Month Income'
+                Amount={40000}
               />
               <DataCard
                 Icon={BanknoteArrowDown}
                 IconColor='bg-danger'
-                Title='Expense'
-                Amount={200.86}
+                Title='This Month Expense'
+                Amount={0}
               />
               
             </div>
 
             <div>
               <div className='flex justify-between pl-12 items-end mb-4' >
-                <h3 className='text-sm text-black/40'>Your Transaction</h3>
+                <h3 className='text-sm font-semibold text-black/40'>Recently Transaction</h3>
                 <select 
                   name="sort-by" 
                   id="sort-by"
-                  className='py-2 px-3 bg-white rounded-xl text-sm'
+                  className='py-2 px-3 bg-white rounded-xl text-sm text-black/70'
                   defaultValue={"none"}
                 >
-                  <option value="none" disabled>Sort By</option>
-                  <option value="">opsi 1</option>
-                  <option value="">opsi 2</option>
-                  <option value="">opsi 3</option>
-                  <option value="">opsi 4</option>
+                  <option value="">All</option>
+                  <option value="">Income</option>
+                  <option value="">Expense</option>
                 </select>
               </div>
-              <div className='bg-white rounded-xl p-2 shadow max-h-74 overflow-y-auto no-scrollbar'>
+              <div className='bg-white rounded-xl p-2 shadow'>
                 <table className='w-full text-sm '>
                   <thead className='text-black/50 '>
                     <tr>
