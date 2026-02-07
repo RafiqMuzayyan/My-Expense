@@ -103,6 +103,8 @@ const page = () => {
                   <option value="">Expense</option>
                 </select>
               </div>
+              
+              {/* table */}
               <div className='bg-white rounded-xl p-2 shadow'>
                 <table className='w-full text-sm '>
                   <thead className='text-black/50 '>
