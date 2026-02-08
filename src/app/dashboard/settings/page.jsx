@@ -63,7 +63,7 @@ const page = () => {
           </div>
           <div className='flex items-center py-4  border-b border-black/20 text-sm'>
             <div className='w-[30%]'>
-              <h3 >Language</h3>
+              <h3 >Date Format</h3>
             </div>
             <div className='w-[70%] flex items-center justify-between'>
               <select name="" id="" className='px-2 py-1 bg-foreground rounded text-xs'>
