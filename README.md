@@ -10,7 +10,7 @@ A modern, intuitive expense tracking application built with Next.js, designed to
 
 - 📊 **Expense Tracking** - Easily record and categorize your daily expenses
 - 📈 **Financial Overview** - Visualize your spending patterns
-- 🎨 **Modern UI** - Clean and intuitive interface built with shadcn/ui
+- 🎨 **Modern UI** - Clean and intuitive interface
 - 📱 **Responsive Design** - Works seamlessly on desktop, tablet, and mobile
 - ⚡ **Fast Performance** - Optimized with Next.js for lightning-fast experience
 - 🔒 **Local Data** - Your financial data stays private
@@ -20,7 +20,6 @@ A modern, intuitive expense tracking application built with Next.js, designed to
 - **Framework:** [Next.js 14](https://nextjs.org) - React framework for production
 - **Language:** JavaScript/React
 - **Styling:** [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
-- **UI Components:** [shadcn/ui](https://ui.shadcn.com) - Beautifully designed components
 - **Font:** Geist - Optimized with `next/font`
 
 ## 📋 Prerequisites
@@ -71,10 +70,8 @@ My-Expense/
 ├── src/
 │   ├── app/            # Next.js App Router pages
 │   ├── components/     # Reusable React components
-│   │   └── ui/        # shadcn/ui components
 │   ├── lib/           # Utility functions and helpers
 │   └── styles/        # Global styles and CSS
-├── components.json     # shadcn/ui configuration
 ├── next.config.mjs     # Next.js configuration
 ├── tailwind.config.js  # Tailwind CSS configuration
 ├── postcss.config.mjs  # PostCSS configuration
@@ -97,20 +94,6 @@ npm start
 
 # Run linting
 npm run lint
-```
-
-### Adding UI Components
-
-This project uses shadcn/ui. To add new components:
-
-```bash
-npx shadcn-ui@latest add [component-name]
-```
-
-Example:
-```bash
-npx shadcn-ui@latest add button
-npx shadcn-ui@latest add card
 ```
 
 ## 🏗️ Build & Production
@@ -169,7 +152,7 @@ module.exports = {
 
 ### Modifying Components
 
-UI components are located in `src/components/ui/`. You can customize them according to your needs while maintaining the shadcn/ui structure.
+UI components are located in `src/components/`. You can customize them according to your needs.
 
 ## 📚 Learn More
 
@@ -179,11 +162,10 @@ UI components are located in `src/components/ui/`. You can customize them accord
 - [Learn Next.js](https://nextjs.org/learn) - Interactive Next.js tutorial
 - [Next.js GitHub](https://github.com/vercel/next.js) - Next.js repository
 
-### UI Resources
+### Styling Resources
 
-- [shadcn/ui Documentation](https://ui.shadcn.com) - Beautiful UI components
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs) - Utility-first CSS
-- [Radix UI](https://www.radix-ui.com) - Unstyled, accessible components
+- [Tailwind UI Components](https://tailwindui.com) - Official Tailwind components
 
 ## 🤝 Contributing
 
@@ -226,7 +208,6 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 🙏 Acknowledgments
 
 - Built with [Next.js](https://nextjs.org)
-- UI components from [shadcn/ui](https://ui.shadcn.com)
 - Styled with [Tailwind CSS](https://tailwindcss.com)
 - Icons from [Lucide](https://lucide.dev)
 - Font optimization by [Vercel](https://vercel.com/font)
