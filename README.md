@@ -2,7 +2,7 @@
 
 A modern, intuitive expense tracking application built with Next.js, designed to help you manage your personal finances with ease.
 
-![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)
 
@@ -17,7 +17,7 @@ A modern, intuitive expense tracking application built with Next.js, designed to
 
 ## 🚀 Tech Stack
 
-- **Framework:** [Next.js 14](https://nextjs.org) - React framework for production
+- **Framework:** [Next.js 16](https://nextjs.org) - React framework for production
 - **Language:** JavaScript/React
 - **Styling:** [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
 - **Font:** Geist - Optimized with `next/font`
@@ -133,22 +133,6 @@ The easiest way to deploy your Next.js app is to use [Vercel](https://vercel.com
 - **Self-Hosted** - [Next.js Docs](https://nextjs.org/docs/app/building-your-application/deploying#self-hosting)
 
 ## 🎨 Customization
-
-### Changing Theme
-
-Tailwind CSS configuration can be modified in `tailwind.config.js`:
-
-```javascript
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        // Add your custom colors
-      },
-    },
-  },
-}
-```
 
 ### Modifying Components
 
