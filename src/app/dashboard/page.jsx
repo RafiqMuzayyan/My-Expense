@@ -1,6 +1,9 @@
 import AmountColumn from '@/components/dashboard/AmountColumn'
 import DataCard from '@/components/dashboard/Card/DataCard'
 import DonutChart from '@/components/dashboard/chart/DonutChart'
+import Pagination from '@/components/FormItem/Pagination'
+import SearchBar from '@/components/FormItem/SearchBar'
+import SelectInput from '@/components/FormItem/SelectInput'
 import { BanknoteArrowDown, Search, TrendingDown, TrendingUp, WalletCards, WalletMinimal } from 'lucide-react'
 import React from 'react'
 
@@ -18,12 +21,7 @@ const page = () => {
 
       {/* searchbar */}
       <div className=' flex w-full justify-end pt-10'>
-        <div className='flex gap-1 items-center bg-white rounded-xl px-4 py-1.5 focus-within:ring-2 focus-within:ring-secondary'>
-          <input type="text" placeholder='Search' className='text-sm outline-0'/>
-          <button className='cursor-pointer text-secondary'>
-            <Search size={20}/>
-          </button>
-        </div>
+        <SearchBar />
       </div>
 
       {/* content */}
@@ -65,9 +63,9 @@ const page = () => {
 
         </div>
 
-        <div className='w-full h-full overflow-y-auto no-scrollbar pb-2'>
+        <div className='w-full h-full overflow-y-auto no-scrollbar pb-2 px-1'>
           
-            <div className='w-full grid grid-cols-3 gap-4 mb-4'>
+            <div className='w-full grid grid-cols-3 gap-4 mb-4 '>
               
               <DataCard
                 Icon={WalletCards}
@@ -92,16 +90,15 @@ const page = () => {
             <div>
               <div className='flex justify-between pl-12 items-end mb-4' >
                 <h3 className='text-sm font-semibold text-black/40'>Recently Transaction</h3>
-                <select 
-                  name="sort-by" 
-                  id="sort-by"
-                  className='py-2 px-3 bg-white rounded-xl text-sm text-black/70'
-                  defaultValue={"none"}
-                >
-                  <option value="">All</option>
-                  <option value="">Income</option>
-                  <option value="">Expense</option>
-                </select>
+                <SelectInput
+                  data={[
+                    { label: "All", value: "" },
+                    { label: "Income", value: "income" },
+                    { label: "Expense", value: "expense" },
+                  ]}
+                  name='sort'
+                  id='sort'
+                />
               </div>
               
               {/* table */}
@@ -190,6 +187,7 @@ const page = () => {
 
                   </tbody>
                 </table>
+                <Pagination/>
               </div>
             </div>
         </div>

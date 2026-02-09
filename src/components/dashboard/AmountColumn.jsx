@@ -2,7 +2,10 @@ import toRupiah from '@/app/utilities/toRupiah'
 import { TrendingDown, TrendingUp } from 'lucide-react'
 import React from 'react'
 
-const AmountColumn = ({ income = false, amount }) => {
+const AmountColumn = ({ 
+  income = false, 
+  amount 
+}) => {
   if (income) {
     return (
       <div className="flex items-center w-fit bg-succes/10 p-1 text-succes font-semibold rounded gap-1">

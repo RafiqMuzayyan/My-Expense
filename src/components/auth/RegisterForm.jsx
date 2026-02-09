@@ -1,6 +1,6 @@
 import React  from 'react'
-import BasicInput from './BasicInput'
-import PasswordInput from './PasswordInput'
+import BasicInput from '../FormItem/BasicInput'
+import PasswordInput from '../FormItem/PasswordInput'
 
 const RegisterForm = () => {
     

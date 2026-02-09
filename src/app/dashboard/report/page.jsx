@@ -2,27 +2,25 @@ import DataCard from '@/components/dashboard/Card/DataCard'
 import ExpenseBreakdownCard from '@/components/dashboard/Card/ExpenseBreakdownCard'
 import TopTransactionCard from '@/components/dashboard/Card/TopTransactionCard'
 import LineCharts from '@/components/dashboard/chart/LinesChart'
+import SelectInput from '@/components/FormItem/SelectInput'
 import { BanknoteArrowDown, WalletCards, WalletMinimal } from 'lucide-react'
 import React from 'react'
 
 const page = () => {
   return (
-    <div className='h-full overflow-y-auto no-scrollbar pt-8'>
+    <div className='h-full overflow-y-auto no-scrollbar pt-8 px-1'>
         {/* header */}
         <div className='flex justify-between items-center mb-4'>
           <h1 className=' font-semibold text-2xl text-black/50'>Financial Report</h1>
-          <select 
-              name="sort-by" 
-              id="sort-by"
-              className='py-1.5 px-3 bg-white rounded-2xl text-sm font-semibold shadow'
-              defaultValue={"none"}
-
-            >
-              <option value="">Recent</option>
-              <option value="">opsi 2</option>
-              <option value="">opsi 3</option>
-              <option value="">opsi 4</option>
-            </select>
+          <SelectInput
+            data={[
+              { label: "This Month", value: "this-month" },
+              { label: "Last Month", value: "last-month" },
+              { label: "This Year", value: "this-year" },
+            ]}
+            name='period'
+            id='period'
+          />
         </div>
 
         <div className='w-full grid grid-cols-3 gap-4 mb-4'>

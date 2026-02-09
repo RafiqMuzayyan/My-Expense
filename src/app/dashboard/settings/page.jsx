@@ -1,3 +1,5 @@
+import MiniButton from '@/components/FormItem/MiniButton'
+import SelectInput from '@/components/FormItem/SelectInput'
 import React from 'react'
 
 const page = () => {
@@ -19,9 +21,7 @@ const page = () => {
             </div>
             <div className='w-[70%] flex items-center justify-between'>
               <h1>JOhn KInd</h1>
-              <button className='py-1 px-2 rounded bg-foreground '>
-                Edit
-              </button>
+              <MiniButton padding={4} width={40}>Edit</MiniButton>
             </div>
           </div>
            <div className='flex items-center py-4  border-b border-black/20 text-sm'>
@@ -30,9 +30,7 @@ const page = () => {
             </div>
             <div className='w-[70%] flex items-center justify-between'>
               <h1>john@gmail.com</h1>
-              <button className='py-1 px-2 rounded bg-foreground '>
-                Edit
-              </button>
+              <MiniButton padding={4} width={40}>Edit</MiniButton> 
             </div>
           </div>
            <div className='flex items-center py-4  border-b border-black/20 text-sm'>
@@ -40,9 +38,8 @@ const page = () => {
               <h3 >Password</h3>
             </div>
             <div className='w-[70%] flex items-center justify-between'>
-              <button className='py-1 px-2 rounded bg-foreground '>
-                Edit
-              </button>
+              <h1>************</h1>
+                <MiniButton padding={4} width={40}>Edit</MiniButton>
             </div>
           </div>
           <div className='flex items-center pt-6  border-b border-black/20 '>
@@ -55,10 +52,14 @@ const page = () => {
               <h3 >Language</h3>
             </div>
             <div className='w-[70%] flex items-center justify-between'>
-              <select name="" id="" className='px-2 py-1 bg-foreground rounded'>
-                <option value="indonesia">Indonesia</option>
-                <option value="english">English</option>
-              </select>
+              <SelectInput
+                data={[
+                  { label: "English", value: "english" },
+                  { label: "Indonesia", value: "indonesia" },
+                ]}
+                name='language'
+                id='language'
+              />
             </div>
           </div>
           <div className='flex items-center py-4  border-b border-black/20 text-sm'>
@@ -66,11 +67,15 @@ const page = () => {
               <h3 >Date Format</h3>
             </div>
             <div className='w-[70%] flex items-center justify-between'>
-              <select name="" id="" className='px-2 py-1 bg-foreground rounded text-xs'>
-                <option value="MMM D, YYYY">MMM D, YYYY</option>
-                <option value="D MMMM YYYY">D MMMM YYYY</option>
-                <option value="DD/MM/YYYY">DD/MM/YYYY</option>
-              </select>
+              <SelectInput
+                data={[
+                  { label: "MMM D, YYYY", value: "mmm-d-yyyy" },
+                  { label: "D MMMM YYYY", value: "d-mmmm-yyyy" },
+                  { label: "DD/MM/YYYY", value: "dd/mm/yyyy" },
+                ]}
+                name='date-format'
+                id='date-format'
+              />
             </div>
           </div>
         </div>

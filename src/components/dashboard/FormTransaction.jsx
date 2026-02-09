@@ -1,5 +1,5 @@
 import React from 'react'
-import BasicInput from '../auth/BasicInput'
+import BasicInput from '../FormItem/BasicInput'
 
 const FormTransaction = () => {
     return (

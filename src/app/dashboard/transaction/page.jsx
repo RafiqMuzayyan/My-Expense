@@ -1,8 +1,11 @@
 import AmountColumn from '@/components/dashboard/AmountColumn'
 import BarrChart from '@/components/dashboard/chart/BarChart'
+import SearchBar from '@/components/FormItem/SearchBar'
+import SelectInput from '@/components/FormItem/SelectInput'
 import ModalForm from '@/components/dashboard/ModalForm'
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Search, SquarePen, Trash2 } from 'lucide-react'
+import { SquarePen, Trash2 } from 'lucide-react'
 import React from 'react'
+import Pagination from '@/components/FormItem/Pagination'
 
 const page = () => {
   const data = [
@@ -40,13 +43,13 @@ const page = () => {
 
 
   return (
-    <div className='h-full overflow-y-auto no-scrollbar pt-8'>
+    <div className='h-full overflow-y-auto no-scrollbar pt-8 px-1'>
       
       <div className='mb-4'>
 
         {/* header */}
-        <div className='flex justify-between items-center mb-4'>
-          <h1 className=' font-semibold text-2xl text-black/50'>Your Transaction</h1>
+        <div className='flex justify-between items-center mb-4 '>
+          <h1 className=' font-semibold text-2xl text-black/50 '>Your Transaction</h1>
           <ModalForm/>
         </div>
 
@@ -54,37 +57,26 @@ const page = () => {
         <div className='flex justify-between items-end mb-4' >
           <div className='flex gap-3  text-black/70'>
             
-            <select 
-              name="sort-by" 
-              id="sort-by"
-              className='py-1.5 px-3 bg-white rounded-2xl text-sm font-semibold shadow'
-              defaultValue={"none"}
-
-            >
-              <option value="">All</option>
-              <option value="">opsi 2</option>
-              <option value="">opsi 3</option>
-              <option value="">opsi 4</option>
-            </select>
-            <select 
-              name="sort-by" 
-              id="sort-by"
-              className='py-1.5 px-3 bg-white rounded-2xl text-sm font-semibold shadow'
-              defaultValue={"none"}
-
-            >
-              <option value="">This Month</option>
-              <option value="">opsi 2</option>
-              <option value="">opsi 3</option>
-              <option value="">opsi 4</option>
-            </select>
+            <SelectInput
+              data={[
+                { label: "All", value: "" },
+                { label: "Income", value: "income" },
+                { label: "Expense", value: "expense" },
+              ]}
+              name='sort'
+              id='sort'
+            />
+            <SelectInput
+              data={[
+                { label: "This Month", value: "this-month" },
+                { label: "Last Month", value: "last-month" },
+                { label: "This Year", value: "this-year" },
+              ]}
+              name='period'
+              id='period'
+            />
           </div>
-          <div className='flex gap-1 items-center bg-white rounded-2xl px-4 py-1.5 focus-within:ring-2 focus-within:ring-secondary shadow'>
-            <input type="text" placeholder='Search' className='text-sm outline-0'/>
-            <button className='cursor-pointer text-secondary'>
-              <Search size={20}/>
-            </button>
-          </div>
+          <SearchBar />
         </div>
 
         {/* table */}
@@ -242,15 +234,7 @@ const page = () => {
               </tr>
             </tbody>
           </table>
-          <div className='flex justify-center items-center gap-1 pt-2 text-black/70'>
-            <ChevronsLeft className='bg-foreground rounded hover:bg-dark-foreground hover:text-dark-secondary cursor-pointer transition-all'/>
-            <ChevronLeft className='bg-foreground rounded hover:bg-dark-foreground hover:text-dark-secondary cursor-pointer transition-all'/>
-            <div className='bg-foreground rounded hover:bg-dark-foreground hover:text-dark-secondary cursor-pointer transition-all w-6 text-center font-semibold'>
-              1
-            </div>
-            <ChevronRight className='bg-foreground rounded hover:bg-dark-foreground hover:text-dark-secondary cursor-pointer transition-all'/>
-            <ChevronsRight className='bg-foreground rounded hover:bg-dark-foreground hover:text-dark-secondary cursor-pointer transition-all'/>
-          </div>
+          <Pagination/>
         </div>
       </div>
       <BarrChart data={data}/>

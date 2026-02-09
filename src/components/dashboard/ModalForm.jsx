@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import BasicInput from '../auth/BasicInput'
+import BasicInput from '../FormItem/BasicInput'
 import { Plus } from 'lucide-react'
 
 const ModalForm = () => {
@@ -8,7 +8,7 @@ const ModalForm = () => {
     return (
       <>  
         <button 
-          className='flex items-center px-3 py-1 bg-white shadow rounded-xl gap-3 text-sm  ml-8 cursor-pointer'
+          className='flex items-center px-3 py-1.5 bg-white shadow rounded-lg gap-3 text-sm  ml-8 cursor-pointer'
           type='button'
           onClick={() => setIsOpen(prev => !prev)}
         >
