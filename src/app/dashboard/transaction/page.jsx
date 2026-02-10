@@ -1,11 +1,11 @@
-import AmountColumn from '@/components/dashboard/AmountColumn'
+import AmountColumn from '@/components/dashboard/table/AmountColumn'
 import BarrChart from '@/components/dashboard/chart/BarChart'
 import SearchBar from '@/components/FormItem/SearchBar'
 import SelectInput from '@/components/FormItem/SelectInput'
 import ModalForm from '@/components/dashboard/ModalForm'
 import { SquarePen, Trash2 } from 'lucide-react'
 import React from 'react'
-import Pagination from '@/components/FormItem/Pagination'
+import Pagination from '@/components/dashboard/table/Pagination'
 
 const page = () => {
   const data = [

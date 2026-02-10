@@ -1,11 +1,14 @@
-import AmountColumn from '@/components/dashboard/AmountColumn'
-import DataCard from '@/components/dashboard/Card/DataCard'
+import AmountColumn from '@/components/dashboard/table/AmountColumn'
+import { DataCard, TransactionCard } from '@/components/dashboard/Card'
 import DonutChart from '@/components/dashboard/chart/DonutChart'
-import Pagination from '@/components/FormItem/Pagination'
+import Pagination from '@/components/dashboard/table/Pagination'
 import SearchBar from '@/components/FormItem/SearchBar'
 import SelectInput from '@/components/FormItem/SelectInput'
-import { BanknoteArrowDown, Search, TrendingDown, TrendingUp, WalletCards, WalletMinimal } from 'lucide-react'
+import { ArrowLeftRight, BanknoteArrowDown, Percent,  TrendingDown, TrendingUp, WalletCards, WalletMinimal } from 'lucide-react'
 import React from 'react'
+import LineCharts from '@/components/dashboard/chart/LinesChart'
+
+
 
 const page = () => {
   const data = [
@@ -17,79 +20,69 @@ const page = () => {
 
 
   return (
-    <div className='w-full h-full overflow-y-auto no-scrollbar'>
+    <div className='w-full h-full justify-between overflow-y-auto no-scrollbar'>
 
       {/* searchbar */}
-      <div className=' flex w-full justify-end pt-10'>
+      <div className=' flex w-full justify-end pt-4'>
         <SearchBar />
       </div>
 
-      {/* content */}
-      <div className='flex gap-8   pt-10  '>
+      <div className='grid gap-2 mt-6 grid-cols-4 '>
+        <TransactionCard
+          title="Total Transaction"
+          total={24}
+          blueBackground={true}
+          link={true}
+          Icon={ArrowLeftRight}
+        />
+        <TransactionCard
+          title="Total Income"
+          total={20}
+          Icon={TrendingUp}
+        />
+        <TransactionCard
+          title="Total Expense"
+          total={4}
+          Icon={TrendingDown}
+        />
+        <TransactionCard
+          title="This Month vs Last Month"
+          total={0}
+          Icon={Percent}
+        />
+      </div>
 
-        <div className='w-full flex flex-col gap-8 justify-center  max-w-60'>
-
-          <div className='flex flex-col gap-8'>           
-            <div className=''>
-              <h1 className='font-semibold text-4xl'>
-                Hello John,
-              </h1>
-              <span className='text-black/40 text-sm '>
-                You spent Rp 200.860 this month
-              </span>
-            </div>
-            {/* chart */}
-            <div className="flex flex-col items-center gap-5">
-              {/* Requested */}
+      <div className='grid grid-cols-6 gap-4 mt-4'>
+        <LineCharts
+          height={170}
+          
+        />
+        <div className='w-full grid grid-cols-1 gap-4 col-span-2'>
               
-              <DonutChart data={data} centerData={balance} centerTitle='Total Balance'/>
-              
-              <div className='w-full flex justify-center items-center gap-2'>
-                  <div className='flex gap-1 items-center'>
-                    <span className="w-3 h-3 rounded-full bg-secondary"/>
-                    <h4 className='text-sm font-semibold text-black/70'>Balance</h4>
-                  </div>
-                  <div className='flex gap-1 items-center'>
-                    <span className="w-3 h-3 rounded-full bg-succes"/>
-                    <h4 className='text-sm font-semibold text-black/70'>Income</h4>
-                  </div>
-                  <div className='flex gap-1 items-center justify-between'>
-                    <span className="w-3 h-3 rounded-full bg-danger"/>
-                    <h4 className='text-sm font-semibold text-black/70'>Expense</h4>
-                  </div>
-              </div>
-
-            </div>
-          </div>
-
-          {/* card */}
-          <div className='w-full grid grid-cols-1 gap-4 mb-4 '>
-              
-            <DataCard
-              Icon={WalletCards}
-              Title='This Month Balance'
-              Amount={40000}
-            />
-            <DataCard
-              Icon={WalletMinimal}
-              IconColor='bg-succes'
-              Title='This Month Income'
-              Amount={40000}
-            />
-            <DataCard
-              Icon={BanknoteArrowDown}
-              IconColor='bg-danger'
-              Title='This Month Expense'
-              Amount={0}
-            />
-            
-          </div>
-
+          <DataCard
+            Icon={WalletCards}
+            Title='This Month Balance'
+            Amount={40000}
+          />
+          <DataCard
+            Icon={WalletMinimal}
+            IconColor='bg-succes'
+            Title='This Month Income'
+            Amount={40000}
+          />
+          <DataCard
+            Icon={BanknoteArrowDown}
+            IconColor='bg-danger'
+            Title='This Month Expense'
+            Amount={0}
+          />
+          
         </div>
+      </div>
+
+      <div className='flex gap-8   pt-4  '>
 
         <div className='w-full h-full pb-2 px-1'>
-          
-            
 
             <div>
               <div className='flex justify-between pl-12 items-end mb-4' >
@@ -118,49 +111,6 @@ const page = () => {
                   </thead>
                   <tbody className='text-black/50'>
                     <tr>
-                      <td>Makan Siang</td>
-                      <td>
-                        <AmountColumn amount={25000} />
-                      </td>
-                      <td>Food</td>
-                      <td>29 Jan 2026</td>
-                    </tr>
-
-                    <tr>
-                      <td>Transport Ojek</td>
-                      <td>
-                        <AmountColumn amount={13500} />
-                      </td>
-                      <td>Transport</td>
-                      <td>29 Jan 2026</td>
-                    </tr>
-                    <tr>
-                      <td>Transport Ojek</td>
-                      <td>
-                        <AmountColumn amount={13500} />
-                      </td>
-                      <td>Transport</td>
-                      <td>29 Jan 2026</td>
-                    </tr>
-                    <tr>
-                      <td>Transport Ojek</td>
-                      <td>
-                        <AmountColumn amount={13500} />
-                      </td>
-                      <td>Transport</td>
-                      <td>29 Jan 2026</td>
-                    </tr>
-
-                    <tr>
-                      <td>Gaji Bulanan</td>
-                      <td>
-                        <AmountColumn income amount={4500000} />
-                      </td>
-                      <td>Salary</td>
-                      <td>28 Jan 2026</td>
-                    </tr>
-
-                    <tr>
                       <td>Kopi</td>
                       <td>
                         <AmountColumn amount={18000} />
@@ -168,7 +118,6 @@ const page = () => {
                       <td>Drink</td>
                       <td>28 Jan 2026</td>
                     </tr>
-
                     <tr>
                       <td>Internet Bulanan</td>
                       <td>
@@ -177,7 +126,6 @@ const page = () => {
                       <td>Utilities</td>
                       <td>27 Jan 2026</td>
                     </tr>
-
                     <tr>
                       <td>Freelance Project</td>
                       <td>
@@ -186,7 +134,6 @@ const page = () => {
                       <td>Freelance</td>
                       <td>27 Jan 2026</td>
                     </tr>
-
                     <tr>
                       <td>Jajan</td>
                       <td>
@@ -195,7 +142,6 @@ const page = () => {
                       <td>Snack</td>
                       <td>27 Jan 2026</td>
                     </tr>
-
                     <tr>
                       <td>Langganan Spotify</td>
                       <td>
@@ -204,7 +150,22 @@ const page = () => {
                       <td>Subscription</td>
                       <td>26 Jan 2026</td>
                     </tr>
-
+                    <tr>
+                      <td>Jajan</td>
+                      <td>
+                        <AmountColumn amount={12000} />
+                      </td>
+                      <td>Snack</td>
+                      <td>27 Jan 2026</td>
+                    </tr>
+                    <tr>
+                      <td>Langganan Spotify</td>
+                      <td>
+                        <AmountColumn amount={54990} />
+                      </td>
+                      <td>Subscription</td>
+                      <td>26 Jan 2026</td>
+                    </tr>
                   </tbody>
                 </table>
                 <Pagination/>

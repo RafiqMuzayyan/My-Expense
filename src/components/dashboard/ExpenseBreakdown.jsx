@@ -1,8 +1,8 @@
 import React from 'react'
-import DonutChart from '../chart/DonutChart';
+import DonutChart from './chart/DonutChart';
 import toRupiah from '@/app/utilities/toRupiah';
 
-const  ExpenseBreakdownCard
+const  ExpenseBreakdown
  = () => {
     const data = [
         { name: "Food", value: 2000000, color: "#fb2c36" },
@@ -69,5 +69,5 @@ const  ExpenseBreakdownCard
     )
 }
 
-export default  ExpenseBreakdownCard
+export default  ExpenseBreakdown
 

@@ -43,14 +43,15 @@ const Sidebar = () => {
           duration: 0.2,
           ease: "easeOut",
         }}
-        className="
+        className={`
           bg-foreground
           flex flex-col justify-between
           h-full rounded-xl
-          pt-10 pb-6 px-5
+          
           overflow-hidden z-40
+          ${isOpen ? "me-8 pt-10 pb-6 px-5" : "me-0 pt-0 pb-0 px-0"}
           fixed  lg:relative
-        "
+        `}
       >
         {/* Header */}
         <div className="relative">

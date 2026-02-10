@@ -1,6 +1,5 @@
-import DataCard from '@/components/dashboard/Card/DataCard'
-import ExpenseBreakdownCard from '@/components/dashboard/Card/ExpenseBreakdownCard'
-import TopTransactionCard from '@/components/dashboard/Card/TopTransactionCard'
+import { DataCard, TopTransactionCard } from '@/components/dashboard/Card'
+import ExpenseBreakdown from '@/components/dashboard/ExpenseBreakdown'
 import LineCharts from '@/components/dashboard/chart/LinesChart'
 import SelectInput from '@/components/FormItem/SelectInput'
 import { BanknoteArrowDown, WalletCards, WalletMinimal } from 'lucide-react'
@@ -48,7 +47,7 @@ const page = () => {
         <LineCharts/>
 
         <div className='flex gap-4  my-4 w-full'>
-          <ExpenseBreakdownCard/>
+          <ExpenseBreakdown/>
           <div className='w-[55%]'>
             <TopTransactionCard
               time='January'

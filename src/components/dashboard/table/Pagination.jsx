@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import MiniButton from './MiniButton'
+import MiniButton from '../../FormItem/MiniButton'
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react'
 
 const Pagination = () => {
