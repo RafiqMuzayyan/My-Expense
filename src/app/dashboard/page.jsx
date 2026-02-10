@@ -17,7 +17,7 @@ const page = () => {
 
 
   return (
-    <div className='w-full h-full'>
+    <div className='w-full h-full overflow-y-auto no-scrollbar'>
 
       {/* searchbar */}
       <div className=' flex w-full justify-end pt-10'>
@@ -25,67 +25,71 @@ const page = () => {
       </div>
 
       {/* content */}
-      <div className='flex gap-10 pt-10 h-[82vh]'>
+      <div className='flex gap-8   pt-10  '>
 
-        <div className='w-full   max-w-60'>
+        <div className='w-full flex flex-col gap-8 justify-center  max-w-60'>
 
-          <div className='mb-8'>
-            <h1 className='font-semibold text-4xl'>
-              Hello John,
-            </h1>
-            <span className='text-black/40 text-sm '>
-              You spent Rp 200.860 this month
-            </span>
+          <div className='flex flex-col gap-8'>           
+            <div className=''>
+              <h1 className='font-semibold text-4xl'>
+                Hello John,
+              </h1>
+              <span className='text-black/40 text-sm '>
+                You spent Rp 200.860 this month
+              </span>
+            </div>
+            {/* chart */}
+            <div className="flex flex-col items-center gap-5">
+              {/* Requested */}
+              
+              <DonutChart data={data} centerData={balance} centerTitle='Total Balance'/>
+              
+              <div className='w-full flex justify-center items-center gap-2'>
+                  <div className='flex gap-1 items-center'>
+                    <span className="w-3 h-3 rounded-full bg-secondary"/>
+                    <h4 className='text-sm font-semibold text-black/70'>Balance</h4>
+                  </div>
+                  <div className='flex gap-1 items-center'>
+                    <span className="w-3 h-3 rounded-full bg-succes"/>
+                    <h4 className='text-sm font-semibold text-black/70'>Income</h4>
+                  </div>
+                  <div className='flex gap-1 items-center justify-between'>
+                    <span className="w-3 h-3 rounded-full bg-danger"/>
+                    <h4 className='text-sm font-semibold text-black/70'>Expense</h4>
+                  </div>
+              </div>
+
+            </div>
           </div>
 
-          {/* pie chart */}
-          <div className="flex flex-col items-center gap-5">
-            {/* Requested */}
+          {/* card */}
+          <div className='w-full grid grid-cols-1 gap-4 mb-4 '>
+              
+            <DataCard
+              Icon={WalletCards}
+              Title='This Month Balance'
+              Amount={40000}
+            />
+            <DataCard
+              Icon={WalletMinimal}
+              IconColor='bg-succes'
+              Title='This Month Income'
+              Amount={40000}
+            />
+            <DataCard
+              Icon={BanknoteArrowDown}
+              IconColor='bg-danger'
+              Title='This Month Expense'
+              Amount={0}
+            />
             
-            <DonutChart data={data} centerData={balance} centerTitle='Total Balance'/>
-            
-            <div className='w-full flex justify-center items-center gap-2'>
-                <div className='flex gap-1 items-center'>
-                  <span className="w-3 h-3 rounded-full bg-secondary"/>
-                  <h4 className='text-sm font-semibold text-black/70'>Balance</h4>
-                </div>
-                <div className='flex gap-1 items-center'>
-                  <span className="w-3 h-3 rounded-full bg-succes"/>
-                  <h4 className='text-sm font-semibold text-black/70'>Income</h4>
-                </div>
-                <div className='flex gap-1 items-center justify-between'>
-                  <span className="w-3 h-3 rounded-full bg-danger"/>
-                  <h4 className='text-sm font-semibold text-black/70'>Expense</h4>
-                </div>
-            </div>
-
           </div>
 
         </div>
 
-        <div className='w-full h-full overflow-y-auto no-scrollbar pb-2 px-1'>
+        <div className='w-full h-full pb-2 px-1'>
           
-            <div className='w-full grid grid-cols-3 gap-4 mb-4 '>
-              
-              <DataCard
-                Icon={WalletCards}
-                Title='This Month Balance'
-                Amount={40000}
-              />
-              <DataCard
-                Icon={WalletMinimal}
-                IconColor='bg-succes'
-                Title='This Month Income'
-                Amount={40000}
-              />
-              <DataCard
-                Icon={BanknoteArrowDown}
-                IconColor='bg-danger'
-                Title='This Month Expense'
-                Amount={0}
-              />
-              
-            </div>
+            
 
             <div>
               <div className='flex justify-between pl-12 items-end mb-4' >
@@ -122,6 +126,22 @@ const page = () => {
                       <td>29 Jan 2026</td>
                     </tr>
 
+                    <tr>
+                      <td>Transport Ojek</td>
+                      <td>
+                        <AmountColumn amount={13500} />
+                      </td>
+                      <td>Transport</td>
+                      <td>29 Jan 2026</td>
+                    </tr>
+                    <tr>
+                      <td>Transport Ojek</td>
+                      <td>
+                        <AmountColumn amount={13500} />
+                      </td>
+                      <td>Transport</td>
+                      <td>29 Jan 2026</td>
+                    </tr>
                     <tr>
                       <td>Transport Ojek</td>
                       <td>
