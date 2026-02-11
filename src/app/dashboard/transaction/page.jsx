@@ -1,11 +1,10 @@
-import AmountColumn from '@/components/dashboard/table/AmountColumn'
 import BarrChart from '@/components/dashboard/chart/BarChart'
 import SearchBar from '@/components/FormItem/SearchBar'
 import SelectInput from '@/components/FormItem/SelectInput'
 import ModalForm from '@/components/dashboard/ModalForm'
-import { SquarePen, Trash2 } from 'lucide-react'
 import React from 'react'
-import Pagination from '@/components/dashboard/table/Pagination'
+import Table from '@/components/dashboard/table/Table'
+
 
 const page = () => {
   const data = [
@@ -48,14 +47,14 @@ const page = () => {
       <div className='mb-4'>
 
         {/* header */}
-        <div className='flex justify-between items-center mb-4 '>
+        <div className='flex flex-col sm:flex-row justify-center  sm:justify-between items-center mb-4 gap-4'>
           <h1 className=' font-semibold text-2xl text-black/50 '>Your Transaction</h1>
           <ModalForm/>
         </div>
 
         {/* data filter */}
-        <div className='flex justify-between items-end mb-4' >
-          <div className='flex gap-3  text-black/70'>
+        <div className='flex flex-col-reverse sm:flex-row justify-between items-end mb-4 gap-4' >
+          <div className='flex  gap-3  text-black/70'>
             
             <SelectInput
               data={[
@@ -80,7 +79,7 @@ const page = () => {
         </div>
 
         {/* table */}
-        
+        <Table/>
       </div>
       <BarrChart data={data}/>
     </div>

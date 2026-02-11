@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-r
 
 const Pagination = () => {
     return (
-        <div className='flex justify-center items-center gap-1 pt-2 text-black/70'>        
+        <div className='flex justify-center items-center gap-1 py-4 text-black/70'>        
             <MiniButton><ChevronsLeft/></MiniButton>
             <MiniButton><ChevronLeft/></MiniButton>
             <MiniButton>1</MiniButton>

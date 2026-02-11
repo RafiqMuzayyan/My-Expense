@@ -3,10 +3,10 @@ import styles from "./Table.module.css"
 import React, { useState } from 'react'
 import AmountColumn from './AmountColumn'
 import Pagination from './Pagination'
-import { SquarePen, Trash2, ChevronDown, ChevronUp } from 'lucide-react'
+import { SquarePen, Trash2, EllipsisVertical } from 'lucide-react'
 import transactions from "./data"
 
-const Table = () => {
+const Table = ({transactionData = transactions}) => {
     const [openDetails, setOpenDetails] = useState({})
 
     const toggleDetail = (id) => {
@@ -29,20 +29,16 @@ const Table = () => {
               </tr>
             </thead>
             <tbody className='text-black/50'>
-            {transactions.map((data) => (
+            {transactionData.map((data) => (
               <React.Fragment key={data.id}>
                 <tr>
                   <td data-title="Transaction">
                     <div className='flex items-center gap-2'>
                       <button 
                         onClick={() => toggleDetail(data.id)}
-                        className={styles.detail + ' text-black/70 hover:text-black'}
+                        className={' text-black/70 hover:text-black'}
                       >
-                        {openDetails[data.id] ? (
-                          <ChevronUp size={16} />
-                        ) : (
-                          <ChevronDown size={16} />
-                        )}
+                        <EllipsisVertical size={16} />
                       </button>
                       {data.title}
                     </div>
@@ -54,6 +50,12 @@ const Table = () => {
                   </td>
                   <td data-title="Category">{data.category}</td>
                   <td data-title="Date">{data.date}</td>
+                  {openDetails[data.id] && (
+                    <td data-title="Detail : " className={styles.detailCell}>
+                      <br />
+                      <p>{data.detail || 'No detail available'}</p>
+                    </td>
+                  )}
                   <td data-title="Action">
                     <div className={ styles.action + ' flex items-center gap-1'}>
                       <Trash2 className={styles.icon + ' p-1 bg-danger rounded text-white cursor-pointer'}/>
