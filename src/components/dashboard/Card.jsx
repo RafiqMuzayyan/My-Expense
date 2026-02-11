@@ -7,16 +7,17 @@ export const DataCard = ({
     Icon, 
     IconColor="bg-secondary",
     Title="Title",
-    Amount=0
+    Amount=0,
+    className=""
 }) => {
     return (
-        <div className='bg-white rounded-lg shadow flex gap-2 items-center p-4'>
+        <div className={`bg-white rounded-lg shadow flex gap-2 items-center p-4 ${className}`}>
             <div className={`rounded-full w-10 h-10 flex justify-center items-center text-white ${IconColor}`}>
                 <Icon/>
             </div>
             <div className='flex flex-col'>
-                <h3 className='text-black/50 text-sm font-semibold'>{Title}</h3>
-                <span className='font-semibold text-black/70'>{toRupiah(Amount)}</span>
+                <h3 className='text-black/50 text-xs sm:text-sm font-semibold'>{Title}</h3>
+                <span className='font-semibold text-sm sm:text-base text-black/70'>{toRupiah(Amount)}</span>
             </div>
         </div>
   )
@@ -28,7 +29,7 @@ export const TransactionCard = ({
   return (
     <div className={` rounded-lg shadow px-4 py-3 ${blueBackground ? 'bg-foreground ' : 'bg-white text-black/80' } w-full`}>
       <div className='flex w-full justify-between items-center'>
-        <span className='font-semibold '>
+        <span className='font-semibold text-xs md:text-base'>
           {title}
         </span>
         {link && (
@@ -37,9 +38,9 @@ export const TransactionCard = ({
           </Link>
         )}
       </div>
-      <div className={`flex items-center gap-4 text-7xl font-poppins font-semibold text-black/80 mt-2`}>
+      <div className={`flex items-center gap-4 text-4xl sm:text-5xl md:text-7xl font-poppins font-semibold text-black/80 mt-2`}>
         <h1 >{total}</h1>
-        <Icon size={60} />
+        <Icon className="w-6 h-6 sm:w-10 sm:h-10 md:w-15 md:h-15" />
       </div>
     </div>
   )

@@ -69,7 +69,7 @@ const LineCharts = ({
 
 
   return (
-    <div className="bg-white rounded-xl p-4 w-full shadow    relative overflow-hidden col-span-4">
+    <div className="bg-white rounded-xl p-4 w-full shadow    relative overflow-hidden md:col-span-4">
      
       
       <div className="relative z-10">

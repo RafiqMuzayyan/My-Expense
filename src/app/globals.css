@@ -44,25 +44,6 @@ body {
   font-family: var(--font-nunito);
 }
 
-th{
-  padding: 8px 20px ;
-  background-color: var(--background);
-  text-align: left;
-}
-th:first-child{
-  border-radius: 20px 0px 0px 20px;
-}
-th:last-child{
-  border-radius: 0px 20px 20px 0px;
-}
-tbody{
-  margin: 20px;
-}
-td{
-  padding: 10px 20px;
-  border-bottom: 1px solid var(--grey);
-
-}
 .no-scrollbar {
   scrollbar-width: none;      /* Firefox */
   -ms-overflow-style: none;   /* IE & Edge lama */
