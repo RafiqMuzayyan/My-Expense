@@ -1,59 +1,15 @@
 "use client"
 import React from 'react'
-import toRupiah from '@/app/utilities/toRupiah'
 import { 
   Bar, 
   BarChart, 
+  CartesianGrid, 
   ResponsiveContainer, 
   Tooltip, 
-  XAxis, 
-  YAxis,
-  CartesianGrid 
+  XAxis,
 } from 'recharts'
-
-const CustomTooltip = ({ active, payload, label }) => {
-  if (!active || !payload || !payload.length) return null
-
-  const income = payload.find((p) => p.dataKey === 'income')?.value || 0
-  const expense = payload.find((p) => p.dataKey === 'expense')?.value || 0
-  const net = income - expense
-
-  return (
-    <div className="bg-white border border-grey rounded-lg shadow-xl p-4">
-      <p className="font-semibold text-black/70 mb-3 text-sm tracking-wide uppercase opacity-70">
-        {label}
-      </p>
-      <div className="space-y-2.5">
-        <div className="flex items-center justify-between gap-4">
-          <span className="flex items-center gap-2.5">
-            <span className="w-2 h-2 rounded-full bg-succes" />
-            <span className="text-black/70 text-sm font-medium">Income</span>
-          </span>
-          <span className="font-bold text-succes text-sm tabular-nums">
-            {toRupiah(income)}
-          </span>
-        </div>
-        <div className="flex items-center justify-between gap-4">
-          <span className="flex items-center gap-2.5">
-            <span className="w-2 h-2 rounded-full bg-danger" />
-            <span className="text-black/70 text-sm font-medium">Expense</span>
-          </span>
-          <span className="font-bold text-danger text-sm tabular-nums">
-            {toRupiah(expense)}
-          </span>
-        </div>
-        <div className="border-t border-black/50 pt-2.5 mt-2.5">
-          <div className="flex items-center justify-between gap-6">
-            <span className="text-black/70 text-sm font-medium">Net Flow</span>
-            <span className={`font-bold text-sm tabular-nums ${net >= 0 ? 'text-succes' : 'text-danger'}`}>
-              {toRupiah(net)}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
+import Wrapper from './Wrapper'
+import CustomTooltip from './CustomTooltip'
 
 const BarrChart = ({ 
   data,
@@ -61,6 +17,8 @@ const BarrChart = ({
   title = "Last 30 Days Transaction",
   subtitle = "Daily Income & Expense Analysis"
 }) => {
+
+  const size = data && data.length > 0 ? {width: `${data.length * 35}px`} : {width: '100%'}
 
   return (
     <div className="bg-white rounded-2xl p-4 w-full shadow relative overflow-hidden">
@@ -88,47 +46,49 @@ const BarrChart = ({
         </div>
 
         {/* Chart */}
-        <div className="bg-background border border-grey rounded-xl p-6">
-          <ResponsiveContainer width="100%" height={height}>
-            <BarChart
-              data={data}
-              margin={{ top: 10, right: 10, left: 0, bottom: 10 }}
-            >
-              <CartesianGrid 
-                strokeDasharray="3 3" 
-                stroke="rgba(0, 0, 0, 0.4)" 
-                vertical={false}
-              />
-              <XAxis
-                dataKey="name"
-                tickLine={false}
-                axisLine={false}
-                tick={{ fill: '#6b7280', fontSize: 12, fontWeight: 600 }}
-                dy={12}
-              />
-              <YAxis
-                tickLine={false}
-                axisLine={false}
-                tick={{ fill: '#6b7280', fontSize: 12, fontWeight: 600 }}
-                tickFormatter={(value) => `${(value / 1000000).toFixed(1)}M`}
-                dx={-8}
-              />
-              <Tooltip 
-                content={<CustomTooltip />} 
-                cursor={{ fill: 'rgba(0, 0, 0, 0.05)' }} 
-              />
-              <Bar
-                dataKey="income"
-                fill="#00c951"
-                radius={[8, 8, 0, 0]}
-              />
-              <Bar
-                dataKey="expense"
-                fill="#fb2c36"
-                radius={[8, 8, 0, 0]}
-              />
-            </BarChart>
-          </ResponsiveContainer>
+        <div className="max-w-full bg-background border border-grey rounded-xl px-4 py-4 overflow-x-scroll ">
+
+          <Wrapper size={size}>
+            <ResponsiveContainer width="100%" height={height}>
+              <BarChart
+                data={data}
+                margin={{ top: 10, right: 0, left: 0, bottom: 10 }}
+                barCategoryGap="4"
+              >
+                <CartesianGrid 
+                  strokeDasharray="1 1" 
+                  stroke="rgba(0, 0, 0, 0.1)" 
+                
+                />
+                <XAxis
+                  dataKey="name"
+                  
+                  
+                  tick={{ fill: '#6b7280', fontSize: 14, fontWeight: 600 }}
+                  dy={12}
+                />
+                
+                <Tooltip 
+                  content={<CustomTooltip />} 
+                  cursor={{ fill: 'rgba(0, 0, 0, 0.05)' }} 
+                />
+                <Bar
+                  dataKey="income"
+                  stackId={"ni"}
+                  fill="#00c951"                 
+                  radius={[0, 0, 0, 0]}
+                />
+                <Bar
+                  stackId={"ni"}
+                  dataKey="expense"
+                  fill="#fb2c36"
+                  radius={[5, 5, 0, 0]}
+                />
+              </BarChart>
+              
+            </ResponsiveContainer>
+          </Wrapper>
+
         </div>
 
         {/* Footer info */}

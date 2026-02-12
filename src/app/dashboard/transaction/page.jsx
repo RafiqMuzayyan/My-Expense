@@ -8,7 +8,7 @@ import Table from '@/components/dashboard/table/Table'
 
 const page = () => {
   const data = [
-  { name: '01', income: 4500000, expense: 2200000 },
+  { name: '01', income: 4500000, expense: 4500000 },
   { name: '02', income: 3800000, expense: 1800000 },
   { name: '03', income: 5200000, expense: 2500000 },
   { name: '04', income: 2800000, expense: 1500000 },
@@ -42,7 +42,7 @@ const page = () => {
 
 
   return (
-    <div className='h-full overflow-y-auto no-scrollbar pt-8 px-1'>
+    <div className='h-full overflow-y-auto no-scrollbar pt-8 pb-4 px-1'>
       
       <div className='mb-4'>
 

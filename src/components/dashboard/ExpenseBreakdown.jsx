@@ -37,15 +37,18 @@ const  ExpenseBreakdown
 
 
     return (
-        <div className='bg-white rounded-xl p-4 shadow  w-[45%]'>
+        <div className='bg-white rounded-xl p-4 shadow  w-full md:w-[45%]'>
             <div className='mb-8'>
                 <h1 className='text-xl text-black/70 font-semibold'>
                     Expense Breakdown
                 </h1>
             </div>
-            <div className='flex justify-between items-center gap-3 mb-4'>
-                <DonutChart data={data} centerData={getTotalValue(data)}/>
-                <div className='flex flex-col w-fit gap-2'>
+            <div className='flex  md:flex-col lg:flex-row justify-between items-center gap-3 mb-4 expense-breakdown-chart'>
+                <DonutChart 
+                    data={data} 
+                    centerData={getTotalValue(data)}                 
+                />
+                <div className='w-fit md:w-full flex  flex-col lg:w-fit gap-2'>
                     {data.map((item) => (
                         <div className='flex gap-3 items-center justify-between' key={item.name}>
                             <div className='flex justify-start items-center gap-2'> 

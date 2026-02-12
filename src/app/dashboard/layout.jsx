@@ -5,7 +5,9 @@ export default function DashboardLayout({ children }) {
         <section className="flex w-screen p-0 lg:p-4 h-screen ">
 
             {/* sidebar */}
-            <Sidebar/>
+            
+                <Sidebar/>
+            
 
             {/* content */}
             <div className="w-full h-full p-2 sm:p-0">

@@ -22,12 +22,13 @@ const page = () => {
           />
         </div>
 
-        <div className='w-full grid grid-cols-3 gap-4 mb-4'>
+        <div className='w-full grid sm:grid-cols-3 gap-4 mb-4'>
               
           <DataCard
             Icon={WalletCards}
             Title='Balance'
-            Amount={40000}
+            Amount={10000000}
+            
           />
           <DataCard
             Icon={WalletMinimal}
@@ -46,9 +47,9 @@ const page = () => {
 
         <LineCharts/>
 
-        <div className='flex gap-4  my-4 w-full'>
+        <div className='flex flex-col md:flex-row gap-4  my-4 w-full'>
           <ExpenseBreakdown/>
-          <div className='w-[55%]'>
+          <div className='w-full md:w-[55%]'>
             <TopTransactionCard
               time='January'
               contribution={34}

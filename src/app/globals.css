@@ -42,6 +42,7 @@ body {
   background: var(--background);
   color: var(--black);
   font-family: var(--font-nunito);
+  
 }
 
 .no-scrollbar {
@@ -52,6 +53,14 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;              /* Chrome, Safari */
 }
+
+@media (max-width: 440px) {
+  .expense-breakdown-chart {
+    flex-direction: column  !important;
+  }
+
+}
+
 
 
 

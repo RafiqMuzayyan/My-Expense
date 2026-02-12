@@ -94,7 +94,7 @@ th:last-child{
 
 }
 
-@media (max-width: 620px){
+@media (max-width: 600px){
     .table tbody{
         grid-template-columns: 1fr; 
         gap: 8px;

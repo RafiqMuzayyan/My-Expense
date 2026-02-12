@@ -1,56 +1,12 @@
 "use client"
-import toRupiah from '@/app/utilities/toRupiah'
 import {
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
-  YAxis,
   Tooltip,
   ResponsiveContainer,
-  CartesianGrid,
 } from 'recharts'
-
-const CustomTooltip = ({ active, payload, label }) => {
-  if (!active || !payload || !payload.length) return null
-
-  const income = payload.find((p) => p.dataKey === 'income')?.value || 0
-  const expense = payload.find((p) => p.dataKey === 'expense')?.value || 0
-  const net = income - expense
-
-  return (
-    <div className="bg-white border border-grey rounded-lg shadow-xl p-4">
-      <p className="font-semibold text-black/70 mb-3 text-sm tracking-wide uppercase opacity-70">{label}</p>
-      <div className="space-y-2.5">
-        <div className="flex items-center justify-between gap-4">
-          <span className="flex items-center gap-2.5">
-            <span className="w-2 h-2 rounded-full bg-succes" />
-            <span className="text-black/70 text-sm font-medium">Income</span>
-          </span>
-          <span className="font-bold text-succes text-sm tabular-nums">
-            {toRupiah(income)}
-          </span>
-        </div>
-        <div className="flex items-center justify-between gap-4">
-          <span className="flex items-center gap-2.5">
-            <span className="w-2 h-2 rounded-full bg-danger" />
-            <span className="text-black/70 text-sm font-medium">Expense</span>
-          </span>
-          <span className="font-bold text-danger text-sm tabular-nums">
-            {toRupiah(expense)}
-          </span>
-        </div>
-        <div className="border-t border-gray-200 pt-2.5 mt-2.5">
-          <div className="flex items-center justify-between gap-6">
-            <span className="text-black/70 text-sm font-medium">Net Flow</span>
-            <span className={`font-bold text-sm tabular-nums ${net >= 0 ? 'text-succes' : 'text-danger'}`}>
-              {toRupiah(net)}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
+import CustomTooltip from './CustomTooltip'
 
 const LineCharts = ({ 
   data,  
@@ -58,20 +14,21 @@ const LineCharts = ({
   title = "Monthly Finance Overview",
   subtitle = "Income & Expense Analysis"
 }) =>  {
-  const defaultData = [
-    { name: 'Week 1', income: 4500000, expense: 2200000 },
-    { name: 'Week 2', income: 3800000, expense: 1800000 },
-    { name: 'Week 3', income: 4200000, expense: 2500000 },
-    { name: 'Week 4', income: 5000000, expense: 3200000 },
+  const defaultData = [  
+    { name: '', income: 0, expense: 0 },
+    { name: 'Mon', income: 4500000, expense: 1200000 },
+    { name: 'Tue', income: 1800000, expense: 800000 },
+    { name: 'Wed', income: 4200000, expense: 9500000 },
+    { name: 'Thu', income: 7000000, expense: 4200000 },
+    { name: 'Fri', income: 2800000, expense: 800000 },
+    { name: 'Sat', income: 3200000, expense: 3555555 },
+    { name: 'Sun', income: 7555555, expense: 5222222 },
+    { name: '', income: 7555555, expense: 5222222 },
   ]
-
   const chartData = data || defaultData
 
-
   return (
-    <div className="bg-white rounded-xl p-4 w-full shadow    relative overflow-hidden md:col-span-4">
-     
-      
+    <div className="bg-white rounded-xl p-4 w-full shadow relative overflow-hidden md:col-span-4">
       <div className="relative z-10">
         {/* Header */}
         <div className="mb-8">
@@ -80,7 +37,7 @@ const LineCharts = ({
               <h3 className="font-bold text-2xl text-black/70 tracking-tight mb-1">
                 {title}
               </h3>
-              <p className="text-sm text-black/90 ">{subtitle}</p>
+              <p className="text-sm text-black/90">{subtitle}</p>
             </div>
             <div className="flex items-center gap-4 px-4 py-2 bg-background border border-black/50 rounded-lg">
               <div className="flex items-center gap-2">
@@ -96,68 +53,66 @@ const LineCharts = ({
         </div>
 
         {/* Chart */}
-        <div className="bg-background border border-grey rounded-xl p-6">
+        <div className="bg-background border border-grey rounded-xl px-4 py-4">
           <ResponsiveContainer width="100%" height={height}>
-            <LineChart 
+            <AreaChart 
               data={chartData} 
-              margin={{ top: 10, right: 10, left: 0, bottom: 10 }}
+              margin={{ top: 10, right: 0, left: 0 , bottom: 10 }}
             >
-              <CartesianGrid 
-                strokeDasharray="3 3" 
-                stroke="rgba(0, 0, 0, 0.4)" 
-                vertical={false}
-              />
+              <defs>
+                <linearGradient id="incomeGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#00c951" stopOpacity={0.3}/>
+                  <stop offset="95%" stopColor="#00c951" stopOpacity={0.05}/>
+                </linearGradient>
+                <linearGradient id="expenseGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#fb2c36" stopOpacity={0.2}/>
+                  <stop offset="95%" stopColor="#fb2c36" stopOpacity={0.02}/>
+                </linearGradient>
+              </defs>
+              
+            
+              
               <XAxis
                 dataKey="name"
                 tickLine={false}
                 axisLine={false}
-                tick={{ fill: '#6b7280', fontSize: 12, fontWeight: 600 }}
-                dy={12}
+                tick={{ fill: '#9ca3af', fontSize: 12, fontWeight: 500 }}
+                dy={12}   
+                tickFormatter={(value) => value || ''}
               />
-              <YAxis
-                tickLine={false}
-                axisLine={false}
-                tick={{ fill: '#6b7280', fontSize: 12, fontWeight: 600 }}
-                tickFormatter={(value) => `${(value / 1000000).toFixed(1)}M`}
-                dx={-8}
-              />
-              <Tooltip content={<CustomTooltip />} cursor={{ stroke: 'rgba(0, 0, 0, 0.1)', strokeWidth: 2 }} />
+                
+              <Tooltip content={<CustomTooltip />} cursor={false} />
               
-              <Line
-                type="monotone"
-                dataKey="income"
-                stroke="#00c951"
-                strokeWidth={3}
-                dot={{ 
-                  fill: '#00c951', 
-                  strokeWidth: 0, 
-                  r: 5,
-                  className: 'drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]'
-                }}
-                activeDot={{ 
-                  r: 7, 
-                  strokeWidth: 0,
-                  className: 'drop-shadow-[0_0_12px_rgba(16,185,129,1)]'
-                }}
-              />
-              <Line
+              <Area
                 type="monotone"
                 dataKey="expense"
                 stroke="#fb2c36"
-                strokeWidth={3}
-                dot={{ 
-                  fill: '#fb2c36', 
-                  strokeWidth: 0, 
-                  r: 5,
-                  className: 'drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]'
-                }}
+                strokeWidth={2.5}
+                fill="url(#expenseGradient)"
+                dot={false}
                 activeDot={{ 
-                  r: 7, 
-                  strokeWidth: 0,
-                  className: 'drop-shadow-[0_0_12px_rgba(239,68,68,1)]'
+                  r: 5, 
+                  fill: '#fb2c36',
+                  strokeWidth: 3,
+                  stroke: '#ffffff'
                 }}
               />
-            </LineChart>
+              
+              <Area
+                type="monotone"
+                dataKey="income"
+                stroke="#00c951"
+                strokeWidth={2.5}
+                fill="url(#incomeGradient)"
+                dot={false}
+                activeDot={{ 
+                  r: 5, 
+                  fill: '#00c951',
+                  strokeWidth: 3,
+                  stroke: '#ffffff'
+                }}
+              />
+            </AreaChart>
           </ResponsiveContainer>
         </div>
 
@@ -171,4 +126,4 @@ const LineCharts = ({
   )
 }
 
-export default LineCharts 
+export default LineCharts
