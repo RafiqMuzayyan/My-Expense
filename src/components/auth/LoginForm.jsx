@@ -5,7 +5,7 @@ import PasswordInput from '../FormItem/PasswordInput'
 const LoginForm = () => {
 
     return (
-        <div className='w-100'>
+        <div className={`w-full lg:w-100`}>
             
             <BasicInput
                 label='Email Address'

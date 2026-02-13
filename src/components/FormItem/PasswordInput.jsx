@@ -14,7 +14,7 @@ const PasswordInput = () => {
     <div className='flex flex-col gap-2 mb-4'>
         <label htmlFor="password" className='text-sm'>Password</label>
 
-        <div className='flex justify-between bg-foreground/50 py-2 px-4 rounded shadow-inner focus-within:ring-2 focus-within:ring-secondary'>
+        <div className='flex justify-between bg-foreground/30 py-2 px-4 rounded shadow-inner ring-0 outline-0 focus-within:ring-2 focus-within:ring-secondary/30 transition-all'>
             <input 
                 type={showPassword ? 'text' : 'password'}
                 id="password"
@@ -26,7 +26,7 @@ const PasswordInput = () => {
             <button
                 type='button'
                 onClick={togglePassword}
-                className='cursor-pointer text-black/50'
+                className='cursor-pointer text-secondary/30'
             >
                 {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
             </button>

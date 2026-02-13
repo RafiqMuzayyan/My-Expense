@@ -7,14 +7,14 @@ export default function AuthLayout({ children }) {
             {children}
 
             {/* image */}
-            <div className='w-[40%] h-screen'>
-            <Image
-                src="/auth-image.webp"
-                alt='a'
-                width={1000}
-                height={2000}
-                className='w-full h-full object-cover '
-            />
+            <div className='w-200 h-screen hidden lg:block'>
+                <Image
+                    src="/auth-image.webp"
+                    alt='a'
+                    width={1000}
+                    height={2000}
+                    className='w-full h-full object-cover '
+                />
             </div>
 
         </section>

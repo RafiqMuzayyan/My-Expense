@@ -5,8 +5,8 @@ import PasswordInput from '../FormItem/PasswordInput'
 const RegisterForm = () => {
     
     return (
-        <div className='w-150'>
-            <div className='flex justify-between gap-4'>
+        <div className='lg:w-150 w-full '>
+            <div className='flex justify-between gap-2 lg:gap-4'>
                 <BasicInput
                     label='Full Name'
                     type='text'

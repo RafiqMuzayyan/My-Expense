@@ -4,10 +4,20 @@ import React, { useState } from 'react'
 import AmountColumn from './AmountColumn'
 import Pagination from './Pagination'
 import { SquarePen, Trash2, EllipsisVertical } from 'lucide-react'
-import transactions from "./data"
+import {transactions} from "./data"
+import ModalEditForm from "../modal/ModalEditForm"
+import { formatDisplayDateID } from "@/lib/utils"
+import ModalDelete from "../modal/ModalDelete"
 
 const Table = ({transactionData = transactions}) => {
     const [openDetails, setOpenDetails] = useState({})
+    const [EditId, setEditId] = useState(null)
+
+    const selectedData = transactionData.find(
+      (item) => item.id === EditId
+    )
+    const [deleteId, setdeleteId] = useState(null)
+    
 
     const toggleDetail = (id) => {
         setOpenDetails(prev => ({
@@ -49,7 +59,7 @@ const Table = ({transactionData = transactions}) => {
                     </div>
                   </td>
                   <td data-title="Category">{data.category}</td>
-                  <td data-title="Date">{data.date}</td>
+                  <td data-title="Date">{formatDisplayDateID(data.date)}</td>
                   {openDetails[data.id] && (
                     <td data-title="Detail : " className={styles.detailCell}>
                       <br />
@@ -58,8 +68,8 @@ const Table = ({transactionData = transactions}) => {
                   )}
                   <td data-title="Action">
                     <div className={ styles.action + ' flex items-center gap-1'}>
-                      <Trash2 className={styles.icon + ' p-1 bg-danger rounded text-white cursor-pointer'}/>
-                      <SquarePen className={styles.icon + ' p-1 bg-yellow rounded text-white cursor-pointer'}/>
+                      <Trash2 className={styles.icon + ' p-1 bg-danger rounded text-white cursor-pointer'} onClick={() => setdeleteId(data.id)}/>
+                      <SquarePen className={styles.icon + ' p-1 bg-yellow rounded text-white cursor-pointer'} onClick={() => setEditId(data.id)} />
                     </div>
                   </td>
                 </tr>
@@ -78,7 +88,20 @@ const Table = ({transactionData = transactions}) => {
             </tbody>
           </table>
           <Pagination/>
+         {EditId && selectedData && (
+            <ModalEditForm
+              data={selectedData}
+              onClose={() => setEditId(null)}
+            />
+          )}
+          {deleteId && (
+            <ModalDelete
+              id={deleteId}
+              onClose={() => setdeleteId(null)}
+            />
+          )}  
         </div>
+        
     )
 }
 export default Table

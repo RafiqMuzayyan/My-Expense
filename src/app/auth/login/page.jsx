@@ -4,9 +4,9 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='p-8'>
+    <div className='w-full h-screen lg:w-fit p-4 lg:p-8'>
       <h1 className='text-xl text-black font-semibold'>My Expense</h1>
-      <div className='h-full flex flex-col justify-center '>
+      <div className='flex flex-col justify-center h-[95%]'>
         <h1 className='text-xl text-black font-semibold'>Welcome Back</h1>
         <h5 className='text-black/50 text-sm mb-5'>Please enter your detail to log in.</h5>
         <LoginForm/>

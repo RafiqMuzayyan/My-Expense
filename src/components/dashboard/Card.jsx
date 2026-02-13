@@ -58,17 +58,17 @@ export const TopTransactionCard = ({
   return (
     <div className='bg-white rounded-xl w-full px-4 py-4 shadow mb-4'>
         <div className=' flex w-full justify-between texst-sm text-black/70 mb-2'>
-            <h2 className='font-semibold'>Top {type} In {time}</h2>
-            <span className='font-semibold'>{contribution}%</span>
+            <h2 className='text-sm md:text-base font-semibold'>Top {type} In {time}</h2>
+            <span className='text-sm md:text-base font-semibold'>{contribution}%</span>
         </div>
         <div className='ms-4 flex w-[70%] justify-between items-center'>
             <div>
-                <h1 className='text-xl font-semibold'>{item}</h1>
-                <span className='text-sm text-black/60'>{category}</span>
+                <h1 className='text-base md:text-xl font-semibold'>{item}</h1>
+                <span className='text-xs md:text-sm text-black/60'>{category}</span>
             </div>
             <div className='ms-4 text-end'>
-                <h2 className='text-xl font-semibold'>{toRupiah(amount)}</h2>
-                <span className='text-xs text-black/50'>{date}</span>
+                <h2 className='text-base md:text-xl font-semibold'>{toRupiah(amount)}</h2>
+                <span className='text-xs md:text-sm text-black/50'>{date}</span>
             </div>
         </div>
         

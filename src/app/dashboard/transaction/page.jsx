@@ -1,7 +1,7 @@
 import BarrChart from '@/components/dashboard/chart/BarChart'
 import SearchBar from '@/components/FormItem/SearchBar'
 import SelectInput from '@/components/FormItem/SelectInput'
-import ModalForm from '@/components/dashboard/ModalForm'
+import ModalForm from '@/components/dashboard/modal/ModalForm'
 import React from 'react'
 import Table from '@/components/dashboard/table/Table'
 
