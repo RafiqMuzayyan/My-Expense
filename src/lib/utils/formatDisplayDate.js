@@ -1,10 +1,3 @@
-// import { clsx } from "clsx";
-// import { twMerge } from "tailwind-merge"
-
-// export function cn(...inputs) {
-//   return twMerge(clsx(inputs));
-// }
-
 export const formatDisplayDateENG = (dateString) => {
   return new Date(dateString).toLocaleDateString("en-GB", {
     day: "numeric",
@@ -20,4 +13,3 @@ export const formatDisplayDateID = (dateString) => {
     year: "numeric",
   })
 }
-

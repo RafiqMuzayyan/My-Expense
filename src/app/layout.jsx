@@ -28,9 +28,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={`${poppins.variable} ${spaceGrotesk.variable} ${nunito.variable} antialiased`}
-      >
-        {children}
-
+      >     
+          {children}
       </body>
     </html>
   );

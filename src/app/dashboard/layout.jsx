@@ -1,6 +1,6 @@
 import Sidebar from "@/components/dashboard/Sidebar";
 
-export default function DashboardLayout({ children }) {
+export default  function DashboardLayout({ children }) {
     return(
         <section className="flex w-screen p-0 lg:p-4 h-screen ">
 

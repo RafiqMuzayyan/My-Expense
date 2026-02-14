@@ -1,11 +1,12 @@
 import React  from 'react'
 import BasicInput from '../FormItem/BasicInput'
 import PasswordInput from '../FormItem/PasswordInput'
+import Button from '../FormItem/Button'
 
 const RegisterForm = () => {
     
     return (
-        <div className='lg:w-150 w-full '>
+        <div className='w-full sm:w-150  '>
             <div className='flex justify-between gap-2 lg:gap-4'>
                 <BasicInput
                     label='Full Name'
@@ -25,11 +26,9 @@ const RegisterForm = () => {
 
             <PasswordInput/>
 
-            <button 
-                className='bg-secondary px-4 py-2 rounded text-white cursor-pointer font-semibold hover:bg-secondary/70 transition-all mb-4 w-full'
-            >
+            <Button className='bg-dark-foreground hover:bg-dark-foreground/70 font-poppins text-black/70 font-semibold' type="submit">
                 Register
-            </button>
+            </Button>
         </div>
     )
 }

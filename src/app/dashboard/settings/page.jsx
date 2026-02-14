@@ -1,8 +1,29 @@
+"use client"
 import MiniButton from '@/components/FormItem/MiniButton'
 import SelectInput from '@/components/FormItem/SelectInput'
-import React from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useState } from 'react'
 
-const page = () => {
+const Page = () => {
+    const router = useRouter();
+
+    const getCookieLanguage = () => {
+      if (typeof document === "undefined") return "en";
+
+      const match = document.cookie
+        .split("; ")
+        .find(row => row.startsWith("language="));
+
+      return match ? match.split("=")[1] : "en";
+    };
+
+const [language, setLanguage] = useState(getCookieLanguage);
+
+    const changeLanguage = (lang) => {
+      document.cookie = `language=${lang}; path=/`;
+      setLanguage(lang);
+      router.refresh();
+    };
     return (
       <div className='pt-8'>
         <div className='flex flex-col  justify-center mb-4'>
@@ -54,15 +75,17 @@ const page = () => {
             <div className='w-[70%] flex items-center justify-between'>
               <SelectInput
                 data={[
-                  { label: "English", value: "english" },
-                  { label: "Indonesia", value: "indonesia" },
+                  { label: "English", value: "en" },
+                  { label: "Indonesia", value: "id" },
                 ]}
                 name='language'
                 id='language'
+                onChange={(e) => changeLanguage(e.target.value)}
+                value={language}
               />
             </div>
           </div>
-          <div className='flex items-center py-4  border-b border-black/20 text-sm'>
+          <div className='flex gap-1 items-center py-4  border-b border-black/20 text-sm'>
             <div className='w-[30%]'>
               <h3 >Date Format</h3>
             </div>
@@ -83,4 +106,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

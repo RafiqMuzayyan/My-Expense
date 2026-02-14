@@ -6,18 +6,18 @@ import Pagination from './Pagination'
 import { SquarePen, Trash2, EllipsisVertical } from 'lucide-react'
 import {transactions} from "./data"
 import ModalEditForm from "../modal/ModalEditForm"
-import { formatDisplayDateID } from "@/lib/utils"
 import ModalDelete from "../modal/ModalDelete"
+import { formatDisplayDateID } from "@/lib/utils/formatDisplayDate"
 
 const Table = ({transactionData = transactions}) => {
     const [openDetails, setOpenDetails] = useState({})
+
     const [EditId, setEditId] = useState(null)
+    const [deleteId, setdeleteId] = useState(null)
 
     const selectedData = transactionData.find(
-      (item) => item.id === EditId
+      (item) => item.id === EditId || item.id === deleteId
     )
-    const [deleteId, setdeleteId] = useState(null)
-    
 
     const toggleDetail = (id) => {
         setOpenDetails(prev => ({
@@ -96,7 +96,7 @@ const Table = ({transactionData = transactions}) => {
           )}
           {deleteId && (
             <ModalDelete
-              id={deleteId}
+              data={selectedData}
               onClose={() => setdeleteId(null)}
             />
           )}  

@@ -1,11 +1,12 @@
 import React from 'react'
 import BasicInput from '../FormItem/BasicInput'
 import PasswordInput from '../FormItem/PasswordInput'
+import Button from '../FormItem/Button'
 
 const LoginForm = () => {
 
     return (
-        <div className={`w-full lg:w-100`}>
+        <div className={`w-full sm:w-100`}>
             
             <BasicInput
                 label='Email Address'
@@ -17,11 +18,9 @@ const LoginForm = () => {
 
             <PasswordInput/>
 
-            <button 
-                className='bg-secondary px-4 py-2 rounded text-white cursor-pointer font-semibold hover:bg-secondary/70 transition-all mb-4 w-full'
-            >
+            <Button className='bg-dark-foreground hover:bg-dark-foreground/70 font-poppins text-black/70 font-semibold' type="submit">
                 Login
-            </button>
+            </Button>
         </div>
     )
 }

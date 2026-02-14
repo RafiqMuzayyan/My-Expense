@@ -1,3 +1,4 @@
+
 import { DataCard, TransactionCard } from '@/components/dashboard/Card'
 import SearchBar from '@/components/FormItem/SearchBar'
 import SelectInput from '@/components/FormItem/SelectInput'
@@ -5,18 +6,10 @@ import { ArrowLeftRight, BanknoteArrowDown, Percent,   TrendingDown, TrendingUp,
 import React from 'react'
 import LineCharts from '@/components/dashboard/chart/LinesChart'
 import Table from '@/components/dashboard/table/Table'
+import { getLocale } from '@/lib/i18n/getLocale'
 
-
-
-const page = () => {
-  const data = [
-    { name: "Income", value: 200000, color: "#00c951" },  
-    { name: "Expense", value: 80000, color: "#fb2c36" }, 
-    { name: "Balance", value: 120000, color: "#3b6bd4" },
-  ]
-  const balance = data[2].value
-
-
+const page = async () => {
+  const t = await getLocale();
   return (
     <div className='w-full h-full justify-between overflow-y-auto no-scrollbar px-1'>
 
@@ -28,24 +21,24 @@ const page = () => {
       {/* cards */}
       <div className='grid gap-2 mt-6 grid-cols-2 md:grid-cols-4 '>
         <TransactionCard
-          title="Total Transaction"
+          title={"Total " + t.common.transaction}
           total={24}
           blueBackground={true}
           link={true}
           Icon={ArrowLeftRight}
         />
         <TransactionCard
-          title="Total Income"
+          title={"Total " + t.common.income}
           total={20}
           Icon={TrendingUp}
         />
         <TransactionCard
-          title="Total Expense"
+          title={"Total " + t.common.expense}
           total={4}
           Icon={TrendingDown}
         />
         <TransactionCard
-          title="Monthly Comparison"
+          title={t.comparison.monthly}
           total={0}
           Icon={Percent}
         />
@@ -88,7 +81,7 @@ const page = () => {
 
             <div>
               <div className='flex justify-between pl-12 items-end mb-4' >
-                <h3 className='text-sm font-semibold text-black/40'>Recently Transaction</h3>
+                <h3 className='text-sm font-semibold text-black/40'>{t.transaction.recently}</h3>
                 <SelectInput
                   data={[
                     { label: "All", value: "" },

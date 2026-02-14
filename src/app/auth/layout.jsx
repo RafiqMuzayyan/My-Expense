@@ -7,9 +7,9 @@ export default function AuthLayout({ children }) {
             {children}
 
             {/* image */}
-            <div className='w-200 h-screen hidden lg:block'>
+            <div className='w-120 h-screen hidden lg:block'>
                 <Image
-                    src="/auth-image.webp"
+                    src="/auth-image.png"
                     alt='a'
                     width={1000}
                     height={2000}

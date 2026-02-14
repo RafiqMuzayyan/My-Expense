@@ -1,8 +1,9 @@
 "use client"
 import React, { useState } from 'react'
 import { Trash2, AlertTriangle } from 'lucide-react'
+import Button from '@/components/FormItem/Button'
 
-const ModalDelete = ({ id,  onClose}) => {
+const ModalDelete = ({ data, onClose}) => {
    
 
     return (
@@ -20,13 +21,13 @@ const ModalDelete = ({ id,  onClose}) => {
                       </p>
                   </div>
 
-                  {/* Transaction Info */}
-                  {/* {transactionName && ( */}
-                      <div className='bg-black/5 rounded-lg p-4 mb-6'>
-                          <p className='text-sm text-black/50 mb-1'>Transaction name:</p>
-                          <p className='font-medium text-black/80'></p>
-                      </div>
-                  {/* )} */}
+                    {/* Transaction Info */}
+                    {data.title && (
+                        <div className='bg-black/5 rounded-lg p-4 mb-6'>
+                            <p className='text-sm text-black/50 mb-1'>Transaction name:</p>
+                            <p className='font-medium text-black/80'>{data.title}</p>
+                        </div>
+                    )} 
 
                   {/* Warning Message */}
                   <div className='bg-danger/10 border-2 border-danger/20 rounded-lg p-3 mb-6'>
@@ -37,20 +38,12 @@ const ModalDelete = ({ id,  onClose}) => {
 
                   {/* Action Buttons */}
                   <div className='flex gap-3'>
-                      <button 
-                          type='button'
-                          className='flex-1 px-4 py-1 md:py-2 border-2 border-black/10 rounded-lg font-medium text-black/80 hover:bg-black/5 transition-colors cursor-pointer'
-                          onClick={onClose}
-                      >
+                      <Button onClick={onClose} className='bg-white hover:bg-black/10 border border-black/10 font-semibold'>  
                           Cancel
-                      </button>
-                      <button 
-                          type='button'
-                          className='flex-1 px-4 py-1 md:py-2 bg-danger rounded-lg font-medium text-white hover:bg-danger/90 transition-colors shadow-lg shadow-danger/30 cursor-pointer'
-                          
-                      >
+                      </Button>
+                      <Button type="submit" className='bg-danger  hover:bg-danger/85 font-semibold text-white'>  
                           Delete
-                      </button>
+                      </Button>
                   </div>
               </div>
           </div>     
