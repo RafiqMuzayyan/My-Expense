@@ -1,6 +1,6 @@
 import React from 'react'
 import DonutChart from './chart/DonutChart';
-import toRupiah from '@/app/utilities/toRupiah';
+import toRupiah from '@/utilities/toRupiah';
 
 const  ExpenseBreakdown
  = () => {

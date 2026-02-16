@@ -4,14 +4,11 @@ import SelectInput from '@/components/FormItem/SelectInput'
 import ModalForm from '@/components/dashboard/modal/ModalForm'
 import React from 'react'
 import Table from '@/components/dashboard/table/Table'
-import { getLocale } from '@/lib/i18n/getLocale'
 import { barChartData } from '@/components/dashboard/table/data'
 
 
 const page =  async () => {
   
-  const t = await getLocale();
-
   return (
     <div className='h-full overflow-y-auto no-scrollbar pt-8 pb-4 px-1'>
       
@@ -19,7 +16,7 @@ const page =  async () => {
 
         {/* header */}
         <div className='flex flex-col sm:flex-row justify-center  sm:justify-between items-center mb-4 gap-4'>
-          <h1 className=' font-semibold text-2xl text-black/50 '>{t.transaction.me}</h1>
+          <h1 className=' font-semibold text-2xl text-black/50 '>Transactions</h1>
           <ModalForm/>
         </div>
 

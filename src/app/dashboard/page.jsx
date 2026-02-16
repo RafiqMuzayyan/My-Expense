@@ -6,10 +6,14 @@ import { ArrowLeftRight, BanknoteArrowDown, Percent,   TrendingDown, TrendingUp,
 import React from 'react'
 import LineCharts from '@/components/dashboard/chart/LinesChart'
 import Table from '@/components/dashboard/table/Table'
-import { getLocale } from '@/lib/i18n/getLocale'
+import { serverFetch } from '@/libs/serverFetch'
 
 const page = async () => {
-  const t = await getLocale();
+
+  const data = await serverFetch('/api/expenses')
+  console.log(JSON.stringify(data))
+   
+
   return (
     <div className='w-full h-full justify-between overflow-y-auto no-scrollbar px-1'>
 
@@ -21,24 +25,24 @@ const page = async () => {
       {/* cards */}
       <div className='grid gap-2 mt-6 grid-cols-2 md:grid-cols-4 '>
         <TransactionCard
-          title={"Total " + t.common.transaction}
+          title="Total Transactions"
           total={24}
           blueBackground={true}
           link={true}
           Icon={ArrowLeftRight}
         />
         <TransactionCard
-          title={"Total " + t.common.income}
+          title="Total Income"
           total={20}
           Icon={TrendingUp}
         />
         <TransactionCard
-          title={"Total " + t.common.expense}
+          title="Total Expense"
           total={4}
           Icon={TrendingDown}
         />
         <TransactionCard
-          title={t.comparison.monthly}
+          title="Monthly Comparison"
           total={0}
           Icon={Percent}
         />
@@ -81,7 +85,7 @@ const page = async () => {
 
             <div>
               <div className='flex justify-between pl-12 items-end mb-4' >
-                <h3 className='text-sm font-semibold text-black/40'>{t.transaction.recently}</h3>
+                <h3 className='text-sm font-semibold text-black/40'>Recent Transactions</h3>
                 <SelectInput
                   data={[
                     { label: "All", value: "" },

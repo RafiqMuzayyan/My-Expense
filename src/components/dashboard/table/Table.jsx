@@ -7,7 +7,7 @@ import { SquarePen, Trash2, EllipsisVertical } from 'lucide-react'
 import {transactions} from "./data"
 import ModalEditForm from "../modal/ModalEditForm"
 import ModalDelete from "../modal/ModalDelete"
-import { formatDisplayDateID } from "@/lib/utils/formatDisplayDate"
+import { formatDisplayDateID } from "@/utilities/formatDisplayDate"
 
 const Table = ({transactionData = transactions}) => {
     const [openDetails, setOpenDetails] = useState({})

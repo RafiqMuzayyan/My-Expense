@@ -1,4 +1,4 @@
-import toRupiah from '@/app/utilities/toRupiah'
+import toRupiah from '@/utilities/toRupiah'
 import { TrendingDown, TrendingUp } from 'lucide-react'
 import React from 'react'
 

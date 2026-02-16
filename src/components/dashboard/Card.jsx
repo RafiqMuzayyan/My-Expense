@@ -1,4 +1,4 @@
-import  toRupiah  from '@/app/utilities/toRupiah'
+import  toRupiah  from '@/utilities/toRupiah'
 import { SquareArrowOutUpRight } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'

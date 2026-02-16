@@ -1,6 +1,6 @@
 "use client"
 
-import toRupiah from "@/app/utilities/toRupiah"
+import toRupiah from "@/utilities/toRupiah"
 import { PieChart, Pie , Label, Cell, ResponsiveContainer } from "recharts"
 
 export default function DonutChart({ 

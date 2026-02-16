@@ -1,4 +1,4 @@
-import toRupiah from '@/app/utilities/toRupiah'
+import toRupiah from '@/utilities/toRupiah'
 import React from 'react'
 
 const CustomTooltip = ({ active, payload, label }) => {
