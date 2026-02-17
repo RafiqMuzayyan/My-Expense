@@ -1,23 +1,60 @@
-import { cookies } from 'next/headers';
+import { cookies } from 'next/headers'
+
 export async function serverFetch(url, options = {}) {
-    const baseUrl = process.env.SERVER_BASE_URL || 'http://localhost:5000';
-    const fullUrl = `${baseUrl}${url}`;
+    const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL
+    const fullUrl = `${baseUrl}${url}`
 
-    const cookieStore = cookies();
-    const cookieHeader = (await cookieStore).toString(); // Get all cookies as a string
+    const cookieStore = cookies()
+    const cookieHeader = (await cookieStore).toString();
 
-    const response = await fetch(fullUrl, {
+    let res = await fetch(fullUrl, {
         ...options,
         headers: {
-            Cookie: cookieHeader, 
+            ...options.headers,
+            Cookie: cookieHeader,
         },
-        credentials: 'include', // include cookies in requests
-        cache: 'no-store', // disable caching to always get fresh data
-    });
-    // if (!response.ok) {
-    //     const errorData = await response.json();
-    //     const error = new Error(errorData.message || 'Server error');
-    //     throw error;
-    // }
-    return response.json();
+        cache: 'no-store',
+    })
+
+    if (res.status === 403) {
+        // 🔥 Refresh token
+        const refreshRes = await fetch(`${baseUrl}/api/auth/refresh`, {
+            method: "POST",
+            headers: {
+                Cookie: cookieHeader
+            }
+        })
+
+        if (!refreshRes.ok) {
+            return refreshRes.json()
+        }
+
+        // 🔥 Ambil set-cookie
+        const setCookie = refreshRes.headers.get("set-cookie")
+
+        if (setCookie) {
+            // Forward cookie ke browser
+            return new Response(
+                JSON.stringify({ message: "Token refreshed" }),
+                {
+                    status: 401,
+                    headers: {
+                        "set-cookie": setCookie
+                    }
+                }
+            )
+        }
+
+        // 🔥 Fetch ulang pakai cookie lama (browser akan update otomatis)
+        res = await fetch(fullUrl, {
+            ...options,
+            headers: {
+                ...options.headers,
+                Cookie: cookieStore.toString(),
+            },
+            cache: 'no-store',
+        })
+    }
+
+    return res.json()
 }
