@@ -9,13 +9,13 @@ import ModalEditForm from "../modal/ModalEditForm"
 import ModalDelete from "../modal/ModalDelete"
 import { formatDisplayDateID } from "@/utilities/formatDisplayDate"
 
-const Table = ({transactionData = transactions}) => {
+const Table = ({data = transactions}) => {
     const [openDetails, setOpenDetails] = useState({})
 
     const [EditId, setEditId] = useState(null)
     const [deleteId, setdeleteId] = useState(null)
 
-    const selectedData = transactionData.find(
+    const selectedData = data.find(
       (item) => item.id === EditId || item.id === deleteId
     )
 
@@ -39,7 +39,7 @@ const Table = ({transactionData = transactions}) => {
               </tr>
             </thead>
             <tbody className='text-black/50'>
-            {transactionData.map((data) => (
+            {data.map((data) => (
               <React.Fragment key={data.id}>
                 <tr>
                   <td data-title="Transaction">

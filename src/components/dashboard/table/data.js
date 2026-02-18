@@ -93,23 +93,24 @@ export const transactions = [
 
 export const categories = [
   // INCOME
-  { value: "salary", label: "Salary", type: "income" },
-  { value: "freelance", label: "Freelance Project", type: "income" },
-  { value: "bonus", label: "Bonus", type: "income" },
-  { value: "other_income", label: "Other Income", type: "income" },
+  { value: "SALARY", label: "Salary", type: "INCOME" },
+  { value: "FREELANCE", label: "Freelance Project", type: "INCOME" },
+  { value: "BONUS", label: "Bonus", type: "INCOME" },
+  { value: "OTHER", label: "Other", type: "INCOME" },
 
   // EXPENSE
-  { value: "food", label: "Food & Drink", type: "expense" },
-  { value: "transport", label: "Transportation", type: "expense" },
-  { value: "subscription", label: "Subscription", type: "expense" },
-  { value: "groceries", label: "Groceries", type: "expense" },
-  { value: "utilities", label: "Utilities", type: "expense" },
-  { value: "shopping", label: "Shopping", type: "expense" },
-  { value: "entertainment", label: "Entertainment", type: "expense" },
-  { value: "health", label: "Health", type: "expense" },
-  { value: "education", label: "Education", type: "expense" },
-  { value: "other", label: "Other", type: "expense" },
+  { value: "FOOD", label: "Food & Drink", type: "EXPENSE" },
+  { value: "TRANSPORT", label: "Transportation", type: "EXPENSE" },
+  { value: "SUBSCRIPTION", label: "Subscription", type: "EXPENSE" },
+  { value: "GROCERIES", label: "Groceries", type: "EXPENSE" },
+  { value: "UTILITIES", label: "Utilities", type: "EXPENSE" },
+  { value: "SHOPPING", label: "Shopping", type: "EXPENSE" },
+  { value: "ENTERTAINMENT", label: "Entertainment", type: "EXPENSE" },
+  { value: "HEALTH", label: "Health", type: "EXPENSE" },
+  { value: "EDUCATION", label: "Education", type: "EXPENSE" },
+  { value: "OTHER", label: "Other", type: "EXPENSE" },
 ];
+
 
 export const barChartData = [
    { name: '01', income: 4500000, expense: 4500000 },

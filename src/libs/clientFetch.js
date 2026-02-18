@@ -2,20 +2,33 @@ export async function clientFetch(url, options = {}) {
     const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL;
     const fullUrl = `${baseUrl}${url}`;
 
-    const response = await fetch(fullUrl, {
+    let response = await fetch(fullUrl, {
+       ...options,
         headers: {
-            ...options.headers
+            ...options.headers,
         },
-        ...options,
-        credentials: 'include', // include cookies in requests
-        cache: 'no-store', // disable caching to always get fresh data
+        credentials: 'include',
     });
-    // if (!response.ok) {
-    //     const errorData = await response.json();
-    //     const error = new Error(errorData.message || 'Server error');
-    //     throw error;
-    // }
-    // 
+     if (response.status === 403) {
+        // 🔥 Refresh token
+        const refreshRes = await fetch(`${baseUrl}/api/auth/refresh`, {
+            credentials: 'include', // include cookies in requests
+            cache: 'no-store',
+            method: 'POST'
+        })
+
+        if (!refreshRes.ok) {
+            return refreshRes.json()
+        }
+
+        response = await fetch(fullUrl, {
+            ...options,
+            headers: {
+                ...options.headers,
+            },
+            credentials: 'include',
+        })
+    }
     
-    return response.json()
+    return response
 }

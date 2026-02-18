@@ -14,6 +14,7 @@ const ModalEditForm = ({data, onClose}) => {
         detail: '',
     }    
     const transaction = data || defaultData
+    console.log(transaction.date)
     const handleSubmit = (e) => {
         e.preventDefault()
 
