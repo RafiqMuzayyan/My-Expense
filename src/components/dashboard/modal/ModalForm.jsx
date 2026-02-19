@@ -5,9 +5,32 @@ import { Plus } from 'lucide-react'
 import Button from '@/components/FormItem/Button'
 import SelectInput from '@/components/FormItem/SelectInput'
 import { categories } from '../table/data'
+import { clientFetch } from '@/libs/clientFetch'
 
 const ModalForm = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const[message, setMessage] = useState('')
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const formData = new FormData(e.target)
+        const data = Object.fromEntries(formData)
+        data.amount = parseInt(data.amount, 10)
+
+        const res = await clientFetch("/api/transactions", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        const resData = await res.json()
+        console.log(resData)
+        if(!res.ok) {
+            setMessage(resData.message || 'Login failed')
+            return
+        }
+        window.location.href = '/dashboard'
+    }
     return (
     <>  
         <button 
@@ -20,7 +43,7 @@ const ModalForm = () => {
         </button>
         {isOpen && (
             <div className='w-full h-full fixed top-0 left-0 flex justify-center items-center bg-black/50 backdrop-blur-sm z-50'>
-                <div className='bg-white rounded-2xl p-6 w-full max-w-md mx-4 shadow-2xl'>
+                <form onSubmit={handleSubmit} className='bg-white rounded-2xl p-6 w-full max-w-md mx-4 shadow-2xl'>
                     {/* Header */}
                     <div className='mb-6'>
                         <h1 className='text-2xl font-bold text-black/80'>Add Transaction</h1>
@@ -35,7 +58,7 @@ const ModalForm = () => {
                                 label='Transaction' 
                                 id='transaction'
                                 placeholder='e.g., Grocery shopping'
-                                name={"transaction"}
+                                name={"title"}
                             />
                             <SelectInput
                                 name="category"
@@ -86,7 +109,7 @@ const ModalForm = () => {
                                         type="radio" 
                                         name='type' 
                                         id='income'
-                                        value='income'
+                                        value='INCOME'
                                         className='w-4 h-4 text-succes focus:ring-succes'
                                     />
                                     <span className='font-medium text-black/80'>Income</span>
@@ -101,7 +124,7 @@ const ModalForm = () => {
                                         type="radio" 
                                         name='type' 
                                         id='expense'
-                                        value='expense'
+                                        value='EXPENSE'
                                         className='w-4 h-4 text-danger focus:ring-danger'
                                     />
                                     <span className='font-medium text-black/80'>Expense</span>
@@ -117,10 +140,10 @@ const ModalForm = () => {
                             Cancel
                         </Button>
                         <Button className='bg-dark-foreground hover:bg-dark-foreground/70  text-black/70 font-semibold' type="submit">
-                            Login
+                            Add
                         </Button>
                     </div>
-                </div>
+                </form>
             </div>
         )}
     </>

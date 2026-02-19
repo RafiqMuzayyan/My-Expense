@@ -18,7 +18,7 @@ export async function clientFetch(url, options = {}) {
         })
 
         if (!refreshRes.ok) {
-            return refreshRes.json()
+            return refreshRes
         }
 
         response = await fetch(fullUrl, {

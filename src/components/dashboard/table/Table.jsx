@@ -55,7 +55,7 @@ const Table = ({data = transactions}) => {
                   </td>
                   <td data-title="Amount">
                     <div>
-                        <AmountColumn income={data.income} amount={data.amount} />
+                        <AmountColumn type={data.type} amount={data.amount} />
                     </div>
                   </td>
                   <td data-title="Category">{data.category}</td>

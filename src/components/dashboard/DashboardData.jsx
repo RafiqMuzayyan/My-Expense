@@ -32,7 +32,7 @@ const DashboardData = ({data}) => {
                 />
                 <TransactionCard
                 title="Monthly Comparison"
-                total={0}
+                total={data.summary.comparison.balanceChangePercent}
                 Icon={Percent}
                 />
             </div>

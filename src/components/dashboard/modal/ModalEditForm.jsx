@@ -3,6 +3,7 @@ import Button from '@/components/FormItem/Button'
 import BasicInput from '../../FormItem/BasicInput'
 import SelectInput from '@/components/FormItem/SelectInput'
 import { categories } from '../table/data'
+import { formatInputDate } from '@/utilities/formatDisplayDate'
 
 const ModalEditForm = ({data, onClose}) => {
     const defaultData = {
@@ -79,7 +80,7 @@ const ModalEditForm = ({data, onClose}) => {
                                 label='Date'
                                 name = "date"
                                 id='date'
-                                defaultValue={transaction.date}
+                                defaultValue={formatInputDate(transaction.date)}
                         />
                     </div>
 
@@ -108,7 +109,7 @@ const ModalEditForm = ({data, onClose}) => {
                                     id='income'
                                     value='income'
                                     className='w-4 h-4 text-succes focus:ring-succes'
-                                    defaultChecked={transaction.income === true}
+                                    defaultChecked={transaction.type === "INCOME"}
                                 />
                                 <span className='font-medium text-black/80'>Income</span>
                                 <span className='text-succes'>↑</span>
@@ -124,7 +125,7 @@ const ModalEditForm = ({data, onClose}) => {
                                         id='expense'
                                         value='expense'
                                         className='w-4 h-4 text-danger focus:ring-danger'
-                                        defaultChecked={transaction.income === false}
+                                        defaultChecked={transaction.type === "EXPENSE"}
                                 />
                                 <span className='font-medium text-black/80'>Expense</span>
                                 <span className='text-danger'>↓</span>

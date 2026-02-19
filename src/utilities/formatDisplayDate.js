@@ -13,3 +13,10 @@ export const formatDisplayDateID = (dateString) => {
     year: "numeric",
   })
 }
+export const formatInputDate = (dateString) => {
+  if (!dateString) return "";
+
+  return new Date(dateString)
+    .toISOString()
+    .split("T")[0];
+};
