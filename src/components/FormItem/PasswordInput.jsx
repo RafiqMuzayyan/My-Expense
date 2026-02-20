@@ -2,7 +2,7 @@
 import { Eye, EyeOff } from 'lucide-react'
 import React, { useState } from 'react'
 
-const PasswordInput = () => {
+const PasswordInput = ({required=true}) => {
 
     const [showPassword, setShowPassword] = useState(false)
 
@@ -21,6 +21,7 @@ const PasswordInput = () => {
                 name='password'
                 placeholder='Min 6 Character'
                 className='w-full focus:outline-none text-sm'  
+                required={required}
             />
 
             <button

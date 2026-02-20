@@ -7,11 +7,11 @@ import {
   ChevronRight,
   FileText,
   House,
-  Power,
   Settings,
   WalletMinimal,
 } from "lucide-react"
 import NavigationItem from "./NavigationItem"
+import Logout from "@/components/dashboard/Logout"
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true)
@@ -94,9 +94,7 @@ const Sidebar = () => {
           <h1 className="font-semibold text-dark-secondary text-xl mb-4">
             John Mark
           </h1>
-          <button className="text-secondary/80 cursor-pointer hover:text-dark-secondary transition">
-            <Power size={20} />
-          </button>
+          <Logout/>
         </div>
       </motion.aside>
     </>

@@ -13,6 +13,7 @@ export default function AuthLayout({ children }) {
                     alt='a'
                     width={1000}
                     height={2000}
+                    priority
                     className='w-full h-full object-cover '
                 />
             </div>

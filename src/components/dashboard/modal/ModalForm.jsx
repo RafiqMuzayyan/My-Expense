@@ -5,31 +5,29 @@ import { Plus } from 'lucide-react'
 import Button from '@/components/FormItem/Button'
 import SelectInput from '@/components/FormItem/SelectInput'
 import { categories } from '../table/data'
-import { clientFetch } from '@/libs/clientFetch'
+import ModalWrapper from './ModalWrapper'
+import RadioButton from '@/components/FormItem/RadioButton'
+import { useApi } from '@/libs/Hooks/useApi'
+import { parseFormData } from '@/utilities/parseFormData'
 
 const ModalForm = () => {
     const [isOpen, setIsOpen] = useState(false)
-    const[message, setMessage] = useState('')
+    const { request, loading, error } = useApi()
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const formData = new FormData(e.target)
-        const data = Object.fromEntries(formData)
-        data.amount = parseInt(data.amount, 10)
+        const data = parseFormData(e.target, {
+            numberFields: ["amount"],
+        })
 
-        const res = await clientFetch("/api/transactions", {
+        await request({
+            url: "/api/transactions",
             method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
+            body: data,
+            redirectTo: "/dashboard", 
+            option: {
+                credentials: 'include'
             }
         })
-        const resData = await res.json()
-        console.log(resData)
-        if(!res.ok) {
-            setMessage(resData.message || 'Login failed')
-            return
-        }
-        window.location.href = '/dashboard'
     }
     return (
     <>  
@@ -42,109 +40,97 @@ const ModalForm = () => {
             <span>Add Transaction</span>
         </button>
         {isOpen && (
-            <div className='w-full h-full fixed top-0 left-0 flex justify-center items-center bg-black/50 backdrop-blur-sm z-50'>
-                <form onSubmit={handleSubmit} className='bg-white rounded-2xl p-6 w-full max-w-md mx-4 shadow-2xl'>
-                    {/* Header */}
-                    <div className='mb-6'>
-                        <h1 className='text-2xl font-bold text-black/80'>Add Transaction</h1>
-                        <p className='text-sm text-black/50 mt-1'>Fill in the details below</p>
-                    </div>
-
-                    {/* Form */}
-                    <div className=''>
-                        {/* Transaction Name */}
-                        <div className='grid grid-cols-2 gap-4'>
-                            <BasicInput 
-                                label='Transaction' 
-                                id='transaction'
-                                placeholder='e.g., Grocery shopping'
-                                name={"title"}
-                            />
-                            <SelectInput
-                                name="category"
-                                id="category"
-                                defaultValue=""
-                                label="Category"
-                                data={categories}
-                                className='w-full'
-                            />
-                        </div>
-
-                        {/* Amount and Date Row */}
-                        <div className='grid grid-cols-2 gap-4'>
-                            <BasicInput 
-                                type='number' 
-                                label='Amount' 
-                                id='amount'
-                                placeholder='0'
-                                name={"amount"}
-                            />
-                            <BasicInput 
-                                type='date' 
-                                label='Date'
-                                name = "date"
-                                id='date'
-                            />
-                        </div>
-                        
-                        <div className='flex flex-col gap-2'>
-                            <label htmlFor="detail">Detail</label>
-                            <textarea 
-                            name="detail" 
-                            id="detail"
-                            className='w-full bg-foreground/30 py-2 px-4 rounded shadow-inner ring-0 outline-0 focus:ring-2 focus:ring-secondary/30 transition-all text-sm mb-4'></textarea>
-                        </div>
-
-                        {/* Type Selection */}
-                        <div>
-                            <label className='block text-sm font-medium text-black/80 mb-3'>
-                                Type
-                            </label>
-                            <div className='grid grid-cols-2 gap-3'>
-                                <label 
-                                    htmlFor='income'
-                                    className='flex items-center justify-center gap-2 p-1 md:p-2 border-2 border-black/10 rounded-lg cursor-pointer transition-all hover:border-succes hover:bg-succes/10 has-checked:border-succes has-checked:bg-succes/10 has-checked:ring-2 has-checked:ring-succes/20'
-                                >
-                                    <input 
-                                        type="radio" 
-                                        name='type' 
-                                        id='income'
-                                        value='INCOME'
-                                        className='w-4 h-4 text-succes focus:ring-succes'
-                                    />
-                                    <span className='font-medium text-black/80'>Income</span>
-                                    <span className='text-succes'>↑</span>
-                                </label>
-                                
-                                <label 
-                                    htmlFor='expense'
-                                    className='flex items-center justify-center gap-2 p-1 md:p-2 border-2 border-black/10 rounded-lg cursor-pointer transition-all hover:border-danger hover:bg-danger/10 has-checked:border-danger has-checked:bg-danger/10 has-checked:ring-2 has-checked:ring-danger/20'
-                                >
-                                    <input 
-                                        type="radio" 
-                                        name='type' 
-                                        id='expense'
-                                        value='EXPENSE'
-                                        className='w-4 h-4 text-danger focus:ring-danger'
-                                    />
-                                    <span className='font-medium text-black/80'>Expense</span>
-                                    <span className='text-danger'>↓</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className='flex gap-3 mt-6'>
-                        <Button className='bg-white border border-black/10 hover:bg-black/10  text-black/70 font-semibold' type="button" onClick={() => setIsOpen(false)}>
-                            Cancel
-                        </Button>
-                        <Button className='bg-dark-foreground hover:bg-dark-foreground/70  text-black/70 font-semibold' type="submit">
-                            Add
-                        </Button>
-                    </div>
-                </form>
+        <ModalWrapper onSubmit={handleSubmit}>
+            {/* Header */}
+            <div className='mb-6'>
+                <h1 className='text-2xl font-bold text-black/80'>Add Transaction</h1>
+                <p className='text-sm text-black/50 mt-1'>Fill in the details below</p>
             </div>
+
+            {/* Form */}
+            <div className=''>
+                {/* Transaction Name */}
+                <div className='grid grid-cols-2 gap-4'>
+                    <BasicInput 
+                        label='Transaction' 
+                        id='transaction'
+                        placeholder='e.g., Grocery shopping'
+                        name={"title"}
+                    />
+                    <SelectInput
+                        name="category"
+                        id="category"
+                        defaultValue=""
+                        label="Category"
+                        data={categories}
+                        className='w-full'
+                    />
+                </div>
+
+                {/* Amount and Date Row */}
+                <div className='grid grid-cols-2 gap-4'>
+                    <BasicInput 
+                        type='number' 
+                        label='Amount' 
+                        id='amount'
+                        placeholder='0'
+                        name={"amount"}
+                    />
+                    <BasicInput 
+                        type='date' 
+                        label='Date'
+                        name = "date"
+                        id='date'
+                    />
+                </div>
+                
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="detail">Detail</label>
+                    <textarea 
+                    name="detail" 
+                    id="detail"
+                    className='w-full bg-foreground/30 py-2 px-4 rounded shadow-inner ring-0 outline-0 focus:ring-2 focus:ring-secondary/30 transition-all text-sm mb-4'></textarea>
+                </div>
+
+                {/* Type Selection */}
+                <div>
+                    <label className='block text-sm font-medium text-black/80 mb-3'>
+                        Type
+                    </label>
+                    <div className='grid grid-cols-2 gap-3'>
+                        <RadioButton
+                            id='income'
+                            name='type'
+                            value='INCOME'
+                            label='Income'
+                        />
+                        <RadioButton
+                            id='expense'
+                            name='type'
+                            value='EXPENSE'
+                            label='Expense'
+                        />
+                    </div>
+                </div>
+            </div>
+
+            {error && <p style={{ color: "red" }}>{error}</p>}
+
+            {/* Action Buttons */}
+            <div className='flex gap-3 mt-6'>
+                {loading ?
+                    <p>Loading</p>
+                :   
+                    <><Button className='bg-white border border-black/10 hover:bg-black/10  text-black/70 font-semibold' type="button" onClick={() => setIsOpen(false)}>
+                        Cancel
+                    </Button>
+                    <Button className='bg-dark-foreground hover:bg-dark-foreground/70  text-black/70 font-semibold' type="submit">
+                        Add
+                    </Button></>
+                }
+                
+            </div>
+        </ModalWrapper>
         )}
     </>
           

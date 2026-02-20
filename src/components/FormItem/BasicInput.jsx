@@ -6,8 +6,8 @@ const BasicInput = ({
     id = '', 
     name, 
     placeholder = 'placeholder',
-    defaultValue = ''
-    
+    defaultValue = '',
+    required = true
 }) => {
   return (
     <div className='flex flex-col gap-2 mb-4 w-full'>
@@ -18,6 +18,7 @@ const BasicInput = ({
             name={name}
             placeholder={placeholder}
             defaultValue={defaultValue}
+            required={required}
             className='bg-foreground/30 py-2 px-4 rounded shadow-inner ring-0 outline-0 focus:ring-2 focus:ring-secondary/30 transition-all text-sm  w-full' 
         />
     </div>

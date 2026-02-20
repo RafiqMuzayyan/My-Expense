@@ -3,34 +3,26 @@ import React from 'react'
 import BasicInput from '../FormItem/BasicInput'
 import PasswordInput from '../FormItem/PasswordInput'
 import Button from '../FormItem/Button'
+import { useApi } from '@/libs/Hooks/useApi'
+import { parseFormData } from '@/utilities/parseFormData'
 
 const LoginForm = () => {
-    const[message, setMessage] = React.useState('')
+    const { request, loading, error } = useApi()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         
-        const formData = new FormData(e.target)
-        const data = {
-            email: formData.get('email'),
-            password: formData.get('password')
-        }
+        const data = parseFormData(e.target)
 
-        const res = await fetch('http://localhost:5000/api/auth/login', {
+        await request ({
+            url: '/api/auth/login',
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body: JSON.stringify(data)
+            body: data,
+            redirectTo: '/dashboard',
+            option: {
+                credentials: 'include'
+            }
         })
-        const resData = await res.json()
-        console.log(resData)
-        if(!res.ok) {
-            setMessage(resData.message || 'Login failed')
-            return
-        }
-        window.location.href = '/dashboard'
 
     }
 
@@ -46,7 +38,7 @@ const LoginForm = () => {
             />
 
             <PasswordInput/>
-            {message && <p className='text-red-500 text-sm'>{message}</p>}
+            {error && <p className='text-red-500 text-sm mb-2'>{error}</p>}
             <Button className='bg-dark-foreground hover:bg-dark-foreground/70 font-poppins text-black/70 font-semibold' type="submit">
                 Login
             </Button>
