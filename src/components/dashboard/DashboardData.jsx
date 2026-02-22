@@ -1,14 +1,27 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import { DataCard, TransactionCard } from '@/components/dashboard/Card'
 import SelectInput from '@/components/FormItem/SelectInput'
 import { ArrowLeftRight, BanknoteArrowDown, Percent,   TrendingDown, TrendingUp, WalletCards, WalletMinimal } from 'lucide-react'
 import LineCharts from '@/components/dashboard/chart/LinesChart'
 import Table from '@/components/dashboard/table/Table'
+import { useApi } from '@/libs/Hooks/useApi'
 
 
-const DashboardData = ({data}) => {
-    console.log({data})
+const DashboardData = ({}) => {
+     const { request, data, loading, error } = useApi();
+
+     useEffect(() => {     
+        request({ 
+            url: "/api/dashboard",
+            option: {
+                credentials: "include"
+            } 
+        });
+    }, [request]);
+
+    if (loading || !data) return <p>Loading...</p>;
+    if (error) return <p>Error</p>;
     return (
         <>
             {/* cards */}

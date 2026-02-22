@@ -1,21 +1,37 @@
 "use client"
 import styles from "./Table.module.css"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AmountColumn from './AmountColumn'
 import Pagination from './Pagination'
 import { SquarePen, Trash2, EllipsisVertical } from 'lucide-react'
-import {transactions} from "./data"
 import ModalEditForm from "../modal/ModalEditForm"
 import ModalDelete from "../modal/ModalDelete"
 import { formatDisplayDateID } from "@/utilities/formatDisplayDate"
+import { useApi } from "@/libs/Hooks/useApi"
+import { getCategoryLabel } from "@/utilities/getCategoryLabel"
 
-const Table = ({data = transactions}) => {
+const Table = ({data: externalData = null}) => {
+
+    const { request, data, loading, error } = useApi();
+    const finalData = externalData ?? data ?? [];
+
+    useEffect(() => {
+    if (!externalData) {
+        request({ 
+          url: "/api/transactions",
+          option: {
+            credentials: "include"
+          } 
+        });
+      }
+    }, [externalData, request]);
+
     const [openDetails, setOpenDetails] = useState({})
 
     const [EditId, setEditId] = useState(null)
     const [deleteId, setdeleteId] = useState(null)
 
-    const selectedData = data.find(
+    const selectedData = finalData?.find(
       (item) => item.id === EditId || item.id === deleteId
     )
 
@@ -26,6 +42,9 @@ const Table = ({data = transactions}) => {
         }))
     }
 
+    if (!finalData && loading) return <p>Loading...</p>;
+    if (error) return <p style={{ color: "red" }}>{error}</p>;
+    
     return (
         <div className={styles.tableContainer + ' rounded-xl shadow'}>
           <table className={styles.table + ' w-full mb-4 '}>
@@ -39,7 +58,7 @@ const Table = ({data = transactions}) => {
               </tr>
             </thead>
             <tbody className='text-black/50'>
-            {data.map((data) => (
+            {finalData?.map((data) => (
               <React.Fragment key={data.id}>
                 <tr>
                   <td data-title="Transaction">
@@ -58,7 +77,7 @@ const Table = ({data = transactions}) => {
                         <AmountColumn type={data.type} amount={data.amount} />
                     </div>
                   </td>
-                  <td data-title="Category">{data.category}</td>
+                  <td data-title="Category">{getCategoryLabel(data.category)}</td>
                   <td data-title="Date">{formatDisplayDateID(data.date)}</td>
                   {openDetails[data.id] && (
                     <td data-title="Detail : " className={styles.detailCell}>

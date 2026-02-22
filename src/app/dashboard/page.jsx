@@ -2,7 +2,6 @@
 import React from 'react'
 import SearchBar from '@/components/FormItem/SearchBar'
 import DashboardData from '@/components/dashboard/DashboardData'
-import FetchWrapper from '@/components/FetchWrapper'
 
 const page = async () => {
 
@@ -13,9 +12,7 @@ const page = async () => {
       <div className=' flex w-full justify-end pt-4'>
         <SearchBar />
       </div>
-      <FetchWrapper api='/api/dashboard'>
-        <DashboardData/>
-      </FetchWrapper>
+      <DashboardData/>  
     </div>
   )
 }

@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState, useCallback } from "react"
 import { useRouter } from "next/navigation"
 
 export const useApi = () => {
@@ -10,16 +10,18 @@ export const useApi = () => {
 
   const router = useRouter()
 
-  const request = async ({
+  const request = useCallback(async ({
     url,
     method = "GET",
     body = null,
     headers = {},
     option = {},
-    redirectTo = null, // optional redirect
+    redirectTo = null,
   }) => {
-    const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL;
-    const fullUrl = `${baseUrl}${url}`;
+
+    const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL
+    const fullUrl = `${baseUrl}${url}`
+
     try {
       setLoading(true)
       setError(null)
@@ -33,33 +35,37 @@ export const useApi = () => {
         },
         body: body ? JSON.stringify(body) : null,
       })
-      if (res.status === 403){
+
+      if (res.status === 403) {
         const refreshRes = await fetch(`${baseUrl}/api/auth/refresh`, {
-            credentials: 'include', // include cookies in requests
-            cache: 'no-store',
-            method: 'POST'
+          credentials: "include",
+          cache: "no-store",
+          method: "POST",
         })
 
         if (!refreshRes.ok) {
-            router.push("/auth")
+          router.push("/auth")
+          return
         }
 
         res = await fetch(fullUrl, {
-            ...option,
-            method,
-            headers: {
+          ...option,
+          method,
+          headers: {
             "Content-Type": "application/json",
             ...headers,
-            },
-            body: body ? JSON.stringify(body) : null,
+          },
+          body: body ? JSON.stringify(body) : null,
         })
       }
+
       const resData = await res.json()
+
       if (!res.ok) {
         throw new Error(resData.message || "Something went wrong")
       }
-      setStatus(res.ok)
 
+      setStatus(true)
       setData(resData)
 
       if (redirectTo) {
@@ -67,13 +73,15 @@ export const useApi = () => {
       }
 
       return resData
+
     } catch (err) {
       setError(err.message)
       return null
     } finally {
       setLoading(false)
     }
-  }
+
+  }, [router])  // ⬅️ dependency penting
 
   return { request, loading, error, data, status }
 }
