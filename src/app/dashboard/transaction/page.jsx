@@ -7,7 +7,7 @@ import Table from '@/components/dashboard/table/Table'
 import { barChartData } from '@/components/dashboard/table/data'
 
 
-const page =  async () => {
+const page = () => {
   
   return (
     <div className='h-full overflow-y-auto no-scrollbar pt-8 pb-4 px-1'>
@@ -49,7 +49,7 @@ const page =  async () => {
         {/* table */}
         <Table/>
       </div>
-      <BarrChart data={barChartData}/>
+      <BarrChart />
     </div>
   )
 }

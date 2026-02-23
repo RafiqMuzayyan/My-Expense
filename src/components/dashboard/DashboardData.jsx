@@ -22,6 +22,7 @@ const DashboardData = ({}) => {
 
     if (loading || !data) return <p>Loading...</p>;
     if (error) return <p>Error</p>;
+    console.log(data)
     return (
         <>
             {/* cards */}

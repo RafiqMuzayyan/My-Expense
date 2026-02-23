@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import { 
   Bar, 
   BarChart, 
@@ -10,16 +10,37 @@ import {
 } from 'recharts'
 import Wrapper from './Wrapper'
 import CustomTooltip from './CustomTooltip'
+import { useApi } from '@/libs/Hooks/useApi'
 
 const BarrChart = ({ 
-  data,
+  data: externalData = null,
   height = 300,
   title = "Last 30 Days Transaction",
   subtitle = "Daily Income & Expense Analysis"
 }) => {
 
+  const { request, data, loading, error } = useApi();
+  const finalData =
+  externalData ??
+  (Array.isArray(data?.chart) ? data.chart : []);
+
+  useEffect(() => {
+    if (!externalData) {
+        request({ 
+          url: "/api/dashboard?include=chart&period=monthly_days",
+          option: {
+            credentials: "include"
+          } 
+        });
+      }
+    }, [externalData, request]);
+
   const size = data && data.length > 0 ? {width: `${data.length * 35}px`} : {width: '100%'}
 
+  if (!finalData && loading) return <p>Loading...</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
+
+  console.log(finalData)
   return (
     <div className="bg-white rounded-2xl p-4 w-full shadow relative overflow-hidden">
       <div className="relative z-10">
@@ -51,7 +72,7 @@ const BarrChart = ({
           <Wrapper size={size}>
             <ResponsiveContainer width="100%" height={height}>
               <BarChart
-                data={data}
+                data={finalData}
                 margin={{ top: 10, right: 0, left: 0, bottom: 10 }}
                 barCategoryGap="4"
               >
@@ -61,7 +82,7 @@ const BarrChart = ({
                 
                 />
                 <XAxis
-                  dataKey="name"
+                  dataKey="label"
                   
                   
                   tick={{ fill: '#6b7280', fontSize: 14, fontWeight: 600 }}
@@ -72,6 +93,7 @@ const BarrChart = ({
                   content={<CustomTooltip />} 
                   cursor={{ fill: 'rgba(0, 0, 0, 0.05)' }} 
                 />
+             
                 <Bar
                   dataKey="income"
                   stackId={"ni"}

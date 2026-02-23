@@ -7,26 +7,15 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import CustomTooltip from './CustomTooltip'
+import { lineChartModifier } from '@/utilities/lineChartModifier'
 
 const LineCharts = ({ 
-  data,  
+  data: flatData,  
   height = 230,
   title = "Monthly Finance Overview",
   subtitle = "Income & Expense Analysis"
 }) =>  {
-  const defaultData = [  
-    { name: '', income: 0, expense: 0 },
-    { name: 'Mon', income: 4500000, expense: 1200000 },
-    { name: 'Tue', income: 1800000, expense: 800000 },
-    { name: 'Wed', income: 4200000, expense: 9500000 },
-    { name: 'Thu', income: 7000000, expense: 4200000 },
-    { name: 'Fri', income: 2800000, expense: 800000 },
-    { name: 'Sat', income: 3200000, expense: 3555555 },
-    { name: 'Sun', income: 7555555, expense: 5222222 },
-    { name: '', income: 7555555, expense: 5222222 },
-  ]
-  const chartData = data || defaultData
-
+  const data = lineChartModifier(flatData)
   return (
     <div className="bg-white rounded-xl p-4 w-full shadow relative overflow-hidden md:col-span-4">
       <div className="relative z-10">
@@ -56,7 +45,7 @@ const LineCharts = ({
         <div className="bg-background border border-grey rounded-xl px-4 py-4">
           <ResponsiveContainer width="100%" height={height}>
             <AreaChart 
-              data={chartData} 
+              data={data} 
               margin={{ top: 10, right: 0, left: 0 , bottom: 10 }}
             >
               <defs>
@@ -73,7 +62,7 @@ const LineCharts = ({
             
               
               <XAxis
-                dataKey="name"
+                dataKey="label"
                 tickLine={false}
                 axisLine={false}
                 tick={{ fill: '#9ca3af', fontSize: 12, fontWeight: 500 }}
